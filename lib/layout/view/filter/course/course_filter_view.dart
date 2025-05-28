@@ -60,7 +60,7 @@ class CourseFilterView extends StatelessWidget {
             builder: (context, state) {
               final bloc = FilterCubit.get(context);
               return SidePadding(
-                sidePadding: 35,
+                sidePadding: 15,
                 child: ListView(
                   children: [
                     type != 'course'

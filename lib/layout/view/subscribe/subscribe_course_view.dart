@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import '../../../bloc/subscribe/subscribe_cubit.dart';
 import '../../../model/user/subscriptions/subscribe_course/subscribe_course_model.dart';
 import '../../../res/drawable/image/images.dart';
@@ -73,7 +74,7 @@ class SubscribeCourseView extends StatelessWidget {
           data.liveSubscription!.isEmpty
               ? const SizedBox()
               : SidePadding(
-                  sidePadding: 35,
+                  sidePadding: 15,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -139,7 +140,7 @@ class SubscribeCourseView extends StatelessWidget {
                   ),
                 )
               : SidePadding(
-                  sidePadding: 35,
+                  sidePadding: 15,
                   child: Text(tr("courses"),
                       textAlign: TextAlign.start,
                       style: TextStyles.unselectedStyle.copyWith(

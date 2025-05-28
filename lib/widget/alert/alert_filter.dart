@@ -30,7 +30,7 @@ class FilterAlert extends StatelessWidget {
               return SizedBox(
                 height: 350.h,
                 child: SidePadding(
-                  sidePadding: 35,
+                  sidePadding: 15,
                   child: Column(
                     children: [
                       const SizedBox(height: 15),

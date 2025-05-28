@@ -34,7 +34,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                       boxHeight: 80,
                     ),
                     SidePadding(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -76,7 +76,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                         onPressed: () => bloc.sendCode(
                             bloc.email.text.trim(), false, false, {}, null),
                         buttonController: bloc.authController,
-                        sidePadding: 35,
+                        sidePadding: 15,
                         buttonText: tr("send")),
                     const Space(
                       boxHeight: 40,

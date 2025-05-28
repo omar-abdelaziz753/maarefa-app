@@ -42,7 +42,7 @@ class CVRegisterScreen extends StatelessWidget {
                             boxHeight: 35,
                           ),
                           const SidePadding(
-                            sidePadding: 35,
+                            sidePadding: 15,
                             child: StepProgressIndicator(
                               totalSteps: 5,
                               currentStep: 5,
@@ -54,7 +54,7 @@ class CVRegisterScreen extends StatelessWidget {
                             boxHeight: 20,
                           ),
                           SidePadding(
-                              sidePadding: 35,
+                              sidePadding: 15,
                               child: Text(
                                 tr("cv"),
                                 style: TextStyles.introStyle.copyWith(
@@ -68,7 +68,7 @@ class CVRegisterScreen extends StatelessWidget {
                                       Center(child: CircularProgressIndicator())
                                     ])
                               : SidePadding(
-                                  sidePadding: 35,
+                                  sidePadding: 15,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -127,7 +127,7 @@ class CVRegisterScreen extends StatelessWidget {
                               onPressed: () {
                                 bloc.verifyProvider(data);
                               },
-                              sidePadding: 35,
+                              sidePadding: 15,
                               buttonText: tr("next")),
                           const Space(
                             boxHeight: 100,

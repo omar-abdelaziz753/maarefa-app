@@ -151,7 +151,7 @@ class _SubjectScreenState extends State<SubjectScreen> {
                 boxHeight: 20,
               ),
               SidePadding(
-                sidePadding: 35,
+                sidePadding: 15,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -199,7 +199,7 @@ class _SubjectScreenState extends State<SubjectScreen> {
                 boxHeight: 20,
               ),
               SidePadding(
-                sidePadding: 35,
+                sidePadding: 15,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -220,7 +220,7 @@ class _SubjectScreenState extends State<SubjectScreen> {
               ),
               Space(boxHeight: 10.h),
               SidePadding(
-                sidePadding: 35,
+                sidePadding: 15,
                 child: GestureDetector(
                   onTap: () => Get.to(() => TrainerScreen(
                         id: widget.lessonDetails.provider!.id!,
@@ -237,7 +237,7 @@ class _SubjectScreenState extends State<SubjectScreen> {
               ),
               MasterButton(
                 buttonText: tr("available_appointments"),
-                sidePadding: 35,
+                sidePadding: 15,
                 buttonColor: mainColor,
                 onPressed: () => Get.to(
                     () => CalenderScreen(lessonDetails: widget.lessonDetails)),

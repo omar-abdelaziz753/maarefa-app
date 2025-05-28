@@ -71,3 +71,4 @@ LinearGradient filterGradient = const LinearGradient(
 const greyColor = Color(0xffBEBEBE);
 const primaryText = Color(0xff272727);
 const accentColor = Color(0xff3F2571);
+const Color scaffoldBackgroundColor = Color(0xFFF9FAFB);

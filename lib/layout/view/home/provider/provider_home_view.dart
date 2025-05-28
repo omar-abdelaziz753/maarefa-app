@@ -1,8 +1,10 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_academy/widget/headers/home/home_header.dart';
 
 import '../../../../../widget/error/page/error_page.dart';
 import '../../../../bloc/cities/cities_cubit.dart';
@@ -14,8 +16,6 @@ import '../../../../res/drawable/image/images.dart';
 import '../../../../res/value/color/color.dart';
 import '../../../../res/value/dimenssion/dimenssions.dart';
 import '../../../../res/value/style/textstyles.dart';
-import '../../../../widget/headers/home/home_header.dart';
-import '../../../../widget/master_list/custom_list.dart';
 import '../../../../widget/row_title/master_row.dart';
 import '../../../../widget/space/space.dart';
 import '../../../activity/provider_screens/all_course/all_courses_screen.dart';
@@ -64,147 +64,138 @@ class _ProviderHomeViewState extends State<ProviderHomeView> {
             }));
   }
 
-  homeView(context, HomeDbResponse? data) {
-    return Stack(
-      alignment: FractionalOffset.topCenter,
+  Widget homeView(BuildContext context, HomeDbResponse? data) {
+    return Column(
       children: [
         Container(
-          width: screenWidth,
-          height: screenHeight * 0.45,
+          padding: EdgeInsets.only(top: 30.h, bottom: 20),
           decoration: const BoxDecoration(
-              color: mainColor,
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(75),
-                  bottomRight: Radius.circular(75))),
+            color: mainColor,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
+          ),
+          child: HomeHeader(
+            isNotify: false,
+            isUser: false,
+            data: data,
+          ),
         ),
-        // Image.asset(
-        //   homeBackground,
-        //   width: screenWidth,
-        //   height: screenHeight * 0.45,
-        //   fit: BoxFit.fill,
-        // ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Space(
-              boxHeight: 50,
-            ),
-            HomeHeader(
-              isNotify: false,
-              isUser: false,
-              data: data,
-            ),
-            const Space(
-              boxHeight: 20,
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                right: 35.w,
-                left: 35.w,
-                top: 10.h,
-              ),
-              child: Text(
-                tr("request"),
-                style: TextStyles.titleStyle.copyWith(color: white),
-              ),
-            ),
-            const Space(
-              boxHeight: 10,
-            ),
-            data!.data.currentAction == null
-                ? EmptyScreen(
-                    title: tr("no_current"),
-                    image: emptyCurrent,
-                    width: screenWidth,
-                    height: 170.h,
-                    color: white,
-                  )
-                : data.data.currentAction!.item == null
-                    ? EmptyScreen(
-                        title: tr("no_current"),
-                        image: emptyCurrent,
-                        width: screenWidth,
-                        height: 170.h,
-                        color: white,
-                      )
-                    : ProviderCurrentCard(
-                        data: data.data.currentAction,
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Space(boxHeight: 20),
+                      SizedBox(
+                        height: 150.sp,
+                        child: Swiper(
+                          autoplay: true,
+                          itemCount: images.length,
+                          itemBuilder: (context, index) => ClipRRect(
+                            // padding: EdgeInsets.symmetric(horizontal: 5.sp),
+                            borderRadius: BorderRadius.circular(15.r),
+                            child: Image.asset(
+                              images[index],
+                              width: screenWidth,
+                              // height: 150,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          viewportFraction: 1,
+                          scale: 0.9,
+                        ),
                       ),
-            Space(
-              boxHeight: screenHeight * 0.09,
+                      10.verticalSpace,
+                      Text(
+                        tr("request"),
+                        style: TextStyles.titleStyle.copyWith(color: mainColor),
+                      ),
+                      const Space(boxHeight: 10),
+                      data!.data.currentAction == null ||
+                              data.data.currentAction!.item == null
+                          ? EmptyScreen(
+                              title: tr("no_current"),
+                              image: emptyCurrent,
+                              width: screenWidth,
+                              height: 170.h,
+                            )
+                          : ProviderCurrentCard(data: data.data.currentAction),
+                      const Space(boxHeight: 30),
+                      MasterRow(
+                        title: tr("t_courses"),
+                        subTitle: tr("view_all_c"),
+                        onTap: () => Get.to(() => const ProviderCourseScreen()),
+                      ),
+                      const Space(boxHeight: 10),
+                      data.data.courses?.isEmpty ?? true
+                          ? EmptyScreen(
+                              title: tr("no_course"),
+                              image: emptyCurrent,
+                              width: screenWidth,
+                              height: 170.h,
+                              color: mainColor.withOpacity(0.3),
+                            )
+                          : GridView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.only(bottom: 10.h),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 10.w,
+                                      mainAxisSpacing: 10.h,
+                                      mainAxisExtent: 200.sp),
+                              itemCount: data.data.courses!.length,
+                              itemBuilder: (context, index) =>
+                                  ProviderCourseCard(
+                                      data: data.data.courses![index]),
+                            ),
+                      const Space(boxHeight: 10),
+                      MasterRow(
+                        title: tr("courses_offered"),
+                        subTitle: tr("view_all_l"),
+                        onTap: () =>
+                            Get.to(() => const ProviderSubjectScreen()),
+                      ),
+                      const Space(boxHeight: 10),
+                      data.data.lessons?.isEmpty ?? true
+                          ? EmptyScreen(
+                              title: tr("no_lesson"),
+                              image: emptyCurrent,
+                              width: screenWidth,
+                              height: 170.h,
+                              color: mainColor.withOpacity(0.3),
+                            )
+                          : ListView.builder(
+                              itemCount: data.data.lessons!.length,
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) => Padding(
+                                padding: EdgeInsets.only(bottom: 15.h),
+                                child: ProviderSubjectCard(
+                                    data: data.data.lessons![index]),
+                              ),
+                            ),
+                      const Space(boxHeight: 50),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: screenHeight * 0.5,
-              width: screenWidth,
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  MasterRow(
-                    title: tr("t_courses"),
-                    subTitle: tr("view_all_c"),
-                    onTap: () => Get.to(() => const ProviderCourseScreen()),
-                  ),
-                  data.data.courses!.isEmpty || data.data.courses == null
-                      ? EmptyScreen(
-                          title: tr("no_course"),
-                          image: emptyCurrent,
-                          width: screenWidth,
-                          height: 170.h,
-                          color: mainColor.withOpacity(0.3),
-                        )
-                      : CustomList(
-                          listHeight: 10000000000000,
-                          listWidth: screenWidth,
-                          scroll: const ScrollPhysics(),
-                          axis: Axis.vertical,
-                          count: data.data.courses!.length,
-                          child: (context, index) => Padding(
-                            padding: EdgeInsets.only(bottom: 15.h),
-                            child: ProviderCourseCard(
-                                data: data.data.courses![index]),
-                          ),
-                        ),
-                  MasterRow(
-                    title: tr("courses_offered"),
-                    subTitle: tr("view_all_l"),
-                    onTap: () => Get.to(() => const ProviderSubjectScreen()),
-                  ),
-                  // const Space(
-                  //   boxHeight: 30,
-                  // ),
-                  data.data.lessons!.isEmpty || data.data.lessons == null
-                      ? EmptyScreen(
-                          title: tr("no_lesson"),
-                          image: emptyCurrent,
-                          width: screenWidth,
-                          height: 170.h,
-                          color: mainColor.withOpacity(0.3),
-                        )
-                      : CustomList(
-                          listHeight: 10000000000000,
-                          listWidth: screenWidth,
-                          scroll: const ScrollPhysics(),
-                          axis: Axis.vertical,
-                          count: data.data.lessons!.length,
-                          child: (context, index) => Padding(
-                            padding: EdgeInsets.only(bottom: 15.h),
-                            child: ProviderSubjectCard(
-                                data: data.data.lessons![index]),
-                          ),
-                        ),
-
-                  const Space(
-                    boxHeight: 50,
-                  ),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
       ],
     );
   }
 }
+
+List<String> images = [
+  "assets/images/banner_image.jpeg",
+  "assets/images/banner_2.jpeg",
+];

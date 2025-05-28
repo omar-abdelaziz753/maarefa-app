@@ -31,16 +31,13 @@ class SubscribeSubjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SidePadding(
-      sidePadding: 35,
+      sidePadding: 15,
       child: Container(
         width: screenWidth,
         height: 120.h,
         decoration: BoxDecoration(
           color: white,
           borderRadius: BorderRadius.circular(5.r),
-          border: Border.all(
-            color: textfieldColor,
-          ),
         ),
         child: Column(
           children: [

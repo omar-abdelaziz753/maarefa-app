@@ -51,7 +51,7 @@ class SpecializationRegisterView extends StatelessWidget {
             builder: (context, state) {
               final bloc = SpecializationCubit.get(context);
               return SidePadding(
-                sidePadding: 35,
+                sidePadding: 15,
                 child: Column(
                   children: [
                     Wrap(

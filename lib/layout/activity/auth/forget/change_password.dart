@@ -50,7 +50,7 @@ class ChangePassword extends StatelessWidget {
                             boxHeight: 80,
                           ),
                           SidePadding(
-                            sidePadding: 35,
+                            sidePadding: 15,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -73,7 +73,7 @@ class ChangePassword extends StatelessWidget {
                             boxHeight: 40.h,
                           ),
                           MasterTextField(
-                            sidePadding: 35,
+                            sidePadding: 15,
                             hintText: tr("old_password"),
                             suffixTap: () => bloc.securePassword(),
                             suffixIcon: "eye",
@@ -88,7 +88,7 @@ class ChangePassword extends StatelessWidget {
                             boxHeight: 30.h,
                           ),
                           MasterTextField(
-                            sidePadding: 35,
+                            sidePadding: 15,
                             hintText: tr("new_password"),
                             suffixTap: () => bloc.secureNewPassword(),
                             suffixIcon: "eye",
@@ -103,7 +103,7 @@ class ChangePassword extends StatelessWidget {
                             boxHeight: 30.h,
                           ),
                           MasterTextField(
-                            sidePadding: 35,
+                            sidePadding: 15,
                             hintText: tr("confirm_password"),
                             suffixTap: () => bloc.secureConfirm(),
                             suffixIcon: "eye",
@@ -120,7 +120,7 @@ class ChangePassword extends StatelessWidget {
                           MasterLoadButton(
                               buttonController: bloc.controller,
                               onPressed: () => bloc.changePassword(),
-                              sidePadding: 35,
+                              sidePadding: 15,
                               buttonText: tr("save_edits")),
                           const Space(
                             boxHeight: 100,

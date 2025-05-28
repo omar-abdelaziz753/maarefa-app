@@ -41,7 +41,7 @@ class SubjectCard extends StatelessWidget {
             builder: (context, state) {
               // final bloc = BookmarkCubit.get(context);
               return SidePadding(
-                sidePadding: 35,
+                sidePadding: 15,
                 child: InkWell(
                   onTap: () => Get.to(() => SubjectScreen(
                       lessonDetails: lessonDetails, isUser: isUser)),
@@ -52,7 +52,6 @@ class SubjectCard extends StatelessWidget {
                     height: 180.h,
                     decoration: BoxDecoration(
                         color: textfieldColor.withOpacity(0.1),
-                        border: Border.all(color: textfieldColor),
                         borderRadius: BorderRadius.circular(5.r)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

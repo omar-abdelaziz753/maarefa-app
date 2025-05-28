@@ -31,7 +31,7 @@ class ChangeEmailScreen extends StatelessWidget {
                       boxHeight: 80,
                     ),
                     SidePadding(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -50,7 +50,7 @@ class ChangeEmailScreen extends StatelessWidget {
                     ),
                     MasterTextField(
                       controller: bloc.email,
-                      sidePadding: 35,
+                      sidePadding: 15,
                       hintText: tr("email"),
                       prefixIcon: email,
                       errorText: bloc.validators[0],
@@ -62,7 +62,7 @@ class ChangeEmailScreen extends StatelessWidget {
                     MasterLoadButton(
                         buttonController: bloc.controller,
                         onPressed: () => bloc.validateEmail(isUser),
-                        sidePadding: 35,
+                        sidePadding: 15,
                         buttonText: tr("confirm")),
                     const Space(
                       boxHeight: 100,

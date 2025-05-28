@@ -33,7 +33,7 @@ class RequestSubjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SidePadding(
-      sidePadding: 35,
+      sidePadding: 15,
       child: InkWell(
         onTap: () => Get.to(() => PayScreen(
               type: "lesson",

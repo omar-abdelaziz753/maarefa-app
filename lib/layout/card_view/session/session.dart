@@ -20,7 +20,7 @@ class SessionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SidePadding(
-      sidePadding: 35,
+      sidePadding: 15,
       child: Container(
         width: screenWidth,
         height: 110.h,

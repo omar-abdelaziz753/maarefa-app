@@ -156,7 +156,7 @@ class ProviderLessonDetailsView extends StatelessWidget {
                         boxHeight: 20,
                       ),
                       SidePadding(
-                        sidePadding: 35,
+                        sidePadding: 15,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -205,7 +205,7 @@ class ProviderLessonDetailsView extends StatelessWidget {
                         boxHeight: 20,
                       ),
                       SidePadding(
-                        sidePadding: 35,
+                        sidePadding: 15,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -226,7 +226,7 @@ class ProviderLessonDetailsView extends StatelessWidget {
                       ),
                       Space(boxHeight: 10.h),
                       SidePadding(
-                        sidePadding: 35,
+                        sidePadding: 15,
                         child: GestureDetector(
                           onTap: () => Get.to(() => TrainerScreen(
                                 id: lessonDetails.provider!.id!,
@@ -282,7 +282,7 @@ class ProviderLessonDetailsView extends StatelessWidget {
                         ),
                       const Space(boxHeight: 30),
                       MasterButton(
-                        sidePadding: 35,
+                        sidePadding: 15,
                         // buttonStyle:
                         //     TextStyles.appBarStyle.copyWith(color: mainColor),
                         onPressed: () {
@@ -296,7 +296,7 @@ class ProviderLessonDetailsView extends StatelessWidget {
                       ),
                       Space(boxHeight: 10.h),
                       MasterButton(
-                          sidePadding: 35,
+                          sidePadding: 15,
                           borderColor: transparent,
                           buttonColor: circleColor.withOpacity(0.1),
                           buttonStyle: TextStyles.appBarStyle

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../activity/user_screens/subject/subject_details.dart';
 
 import '../../../bloc/subscribe/subscribe_cubit.dart';
 import '../../../model/user/subscriptions/subscribe_subject/subscribe_subject_model.dart';
@@ -17,6 +16,7 @@ import '../../../widget/master_list/custom_list.dart';
 import '../../../widget/side_padding/side_padding.dart';
 import '../../../widget/space/space.dart';
 import '../../activity/static/empty_screens/empty_screens.dart';
+import '../../activity/user_screens/subject/subject_details.dart';
 import '../../card_view/current_subject/current_subject_card.dart';
 import '../../card_view/subscribe_subject/subscribe_subject_card.dart';
 
@@ -74,7 +74,7 @@ class SubscribeSubjectCacheView extends StatelessWidget {
                         data.liveSubscription.isEmpty
                             ? const SizedBox()
                             : SidePadding(
-                                sidePadding: 35,
+                                sidePadding: 15,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
@@ -154,7 +154,7 @@ class SubscribeSubjectCacheView extends StatelessWidget {
                           ),
                         )
                       : SidePadding(
-                          sidePadding: 35,
+                          sidePadding: 15,
                           child: Text(tr("subjects"),
                               textAlign: TextAlign.start,
                               style: TextStyles.unselectedStyle.copyWith(

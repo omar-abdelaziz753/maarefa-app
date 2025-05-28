@@ -26,6 +26,7 @@ import 'package:my_academy/repository/provider/auth_provider/auth_provider_repos
 import 'package:my_academy/repository/user/courses/courses_repository.dart';
 import 'package:my_academy/repository/user/edit_profile/user_repository.dart';
 import 'package:my_academy/repository/user/subscriptions/subscriptions_repository.dart';
+import 'package:my_academy/res/value/color/color.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'bloc/auth/show_delete_and_payment./injection.dart';
@@ -186,6 +187,7 @@ class MyApp extends StatelessWidget {
             title: "Maarfa",
             theme: ThemeData(
                 fontFamily: "Shamel",
+                scaffoldBackgroundColor: scaffoldBackgroundColor,
                 appBarTheme: AppBarTheme(
                   surfaceTintColor: Colors.white,
                 )),

@@ -13,7 +13,7 @@ class AuthForget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SidePadding(
-      sidePadding: 35,
+      sidePadding: 15,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

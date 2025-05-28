@@ -34,7 +34,7 @@ class SpecificationRegisterScreen extends StatelessWidget {
                       boxHeight: 35,
                     ),
                     const SidePadding(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       child: StepProgressIndicator(
                         totalSteps: 5,
                         currentStep: 3,
@@ -46,7 +46,7 @@ class SpecificationRegisterScreen extends StatelessWidget {
                       boxHeight: 20,
                     ),
                     SidePadding(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -95,7 +95,7 @@ class SpecificationRegisterScreen extends StatelessWidget {
                     MasterButton(
                         // onPressed: () =>
                         // Get.to(() => const GradesRegisterScreen()),
-                        sidePadding: 35,
+                        sidePadding: 15,
                         buttonText: tr("next")),
                     const Space(
                       boxHeight: 100,

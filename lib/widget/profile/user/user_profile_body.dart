@@ -165,7 +165,6 @@ class UserProfileBody extends StatelessWidget {
                       height: 70.h,
                       width: screenWidth,
                       decoration: BoxDecoration(
-                        border: Border.all(color: textfieldColor),
                         borderRadius: BorderRadius.circular(5.r),
                       ),
                       child: SidePadding(

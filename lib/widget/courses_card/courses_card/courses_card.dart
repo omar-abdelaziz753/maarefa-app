@@ -36,7 +36,7 @@ class CoursesCardUi extends StatelessWidget {
     return InkWell(
       onTap: onPress,
       child: SidePadding(
-        sidePadding: 35,
+        sidePadding: 15,
         child: Stack(
           alignment: FractionalOffset.center,
           children: [

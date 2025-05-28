@@ -95,7 +95,7 @@ class _SpecializationViewState extends State<SpecializationView> {
       builder: (context, state) {
         final bloc = context.watch<ContentCubit>();
         return SidePadding(
-          sidePadding: 35,
+          sidePadding: 15,
           child: ListView(
             children: [
               Text(

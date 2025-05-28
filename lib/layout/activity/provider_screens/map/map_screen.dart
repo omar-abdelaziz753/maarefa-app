@@ -90,7 +90,7 @@ class MapScreen extends StatelessWidget {
 
                             /// set Location Buttons
                             MasterButton(
-                                sidePadding: 35,
+                                sidePadding: 15,
                                 // buttonStyle: TextStyles.appBarStyle
                                 //     .copyWith(color: mainColor),
                                 buttonRadius: 30,
@@ -288,7 +288,7 @@ class MapScreen extends StatelessWidget {
                                                   children: [
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                              .symmetric(
+                                                          .symmetric(
                                                           horizontal: 10),
                                                       child: SizedBox(
                                                         height: 70,

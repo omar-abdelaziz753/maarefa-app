@@ -5,8 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_academy/bloc/contact_us/contact_us_cubit.dart';
 import 'package:my_academy/repository/static_pages/contact_us/contact_us_repository.dart';
 import 'package:my_academy/res/drawable/image/images.dart';
-import 'package:my_academy/res/value/color/color.dart';
-import 'package:my_academy/res/value/style/textstyles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../bloc/social/cubit/social_cubit.dart';
@@ -154,7 +152,7 @@ class ContactUsScreen extends StatelessWidget {
                               Space(boxHeight: 10.h),
                               MasterTextField(
                                 controller: bloc.name,
-                                sidePadding: 35,
+                                sidePadding: 15,
                                 hintText: tr("name"),
                                 errorText: bloc.validators[0],
                                 onChanged: (val) => bloc.validate(val, 0),
@@ -164,7 +162,7 @@ class ContactUsScreen extends StatelessWidget {
                               ),
                               MasterTextField(
                                 controller: bloc.phone,
-                                sidePadding: 35,
+                                sidePadding: 15,
                                 hintText: tr("phone2"),
                                 errorText: bloc.validators[1],
                                 onChanged: (val) => bloc.validate(val, 1),
@@ -175,7 +173,7 @@ class ContactUsScreen extends StatelessWidget {
                               ),
                               MasterTextField(
                                 controller: bloc.email,
-                                sidePadding: 35,
+                                sidePadding: 15,
                                 hintText: tr("email"),
                                 errorText: bloc.validators[2],
                                 onChanged: (val) => bloc.validate(val, 2),
@@ -185,7 +183,7 @@ class ContactUsScreen extends StatelessWidget {
                               ),
                               MasterTextField(
                                 controller: bloc.message,
-                                sidePadding: 35,
+                                sidePadding: 15,
                                 hintText: tr("messege"),
                                 maxLines: 5,
                                 minLines: 5,
@@ -200,13 +198,13 @@ class ContactUsScreen extends StatelessWidget {
                               ),
                               MasterLoadButton(
                                 buttonController: bloc.authController,
-                                sidePadding: 35,
+                                sidePadding: 15,
                                 buttonText: tr("send"),
                                 onPressed: () => bloc.contactUs(),
                               ),
                               // MasterButton(
                               //     onPressed: ()=> bloc.contactUs(),
-                              //     sidePadding: 35,
+                              //     sidePadding: 15,
                               //     buttonText: tr("send")),
                               const Space(
                                 boxHeight: 100,

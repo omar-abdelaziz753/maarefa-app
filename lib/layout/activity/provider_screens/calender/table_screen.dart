@@ -22,7 +22,7 @@
 //     return Scaffold(
 //       appBar: DefaultAppBar(title: tr("table")),
 //       body: SidePadding(
-//         sidePadding: 35,
+//         sidePadding: 15,
 //         child: ListView(
 //           children: [
 //             const Space(

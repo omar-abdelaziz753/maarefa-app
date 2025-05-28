@@ -21,7 +21,8 @@ import '../../activity/user_screens/course/course_registration.dart';
 import '../../card_view/course/course_card.dart';
 
 class SpecializationView extends StatelessWidget {
-  const SpecializationView({super.key, this.title, this.id, required this.filter});
+  const SpecializationView(
+      {super.key, this.title, this.id, required this.filter});
   final String? title;
   final int? id;
   final Map<String, dynamic> filter;
@@ -30,7 +31,11 @@ class SpecializationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => CourseSubjectCubit(CoursesRepository())
-        ..getCourses(1, filter.containsKey("specialization_ids[]")? filter["specialization_ids[]"] : id!,
+        ..getCourses(
+            1,
+            filter.containsKey("specialization_ids[]")
+                ? filter["specialization_ids[]"]
+                : id!,
             filter),
       child: BlocConsumer<CourseSubjectCubit, CourseSubjectState>(
           listener: (context, state) {},
@@ -90,7 +95,7 @@ class SpecializationView extends StatelessWidget {
                         //   boxHeight: 15,
                         // ),
                         // SidePadding(
-                        //   sidePadding: 35,
+                        //   sidePadding: 15,
                         //   child: CustomList(
                         //     listHeight: 40,
                         //     listWidth: screenWidth,

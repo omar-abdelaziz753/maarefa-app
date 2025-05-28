@@ -53,7 +53,7 @@ class GradesProfileView extends StatelessWidget {
               return ListView(
                 children: [
                   SidePadding(
-                    sidePadding: 35,
+                    sidePadding: 15,
                     child: Column(
                       children: [
                         Wrap(

@@ -23,12 +23,15 @@ class SubjectAcademinScreen extends StatelessWidget {
         width: screenWidth,
         padding: EdgeInsets.all(10.w),
         decoration: BoxDecoration(
-          color: white,
-          borderRadius: BorderRadius.circular(5.r),
-          border: Border.all(
-            color: textfieldColor,
-          ),
-        ),
+            color: white,
+            borderRadius: BorderRadius.circular(12.r),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.03),
+                blurRadius: 6,
+                offset: const Offset(0, 2),
+              ),
+            ]),
         child: Column(
           children: [
             Row(

@@ -48,7 +48,7 @@ class ProviderRegisterBody extends StatelessWidget {
                     boxHeight: 25,
                   ),
                   const SidePadding(
-                    sidePadding: 35,
+                    sidePadding: 15,
                     child: StepProgressIndicator(
                       totalSteps: 5,
                       currentStep: 1,
@@ -61,7 +61,7 @@ class ProviderRegisterBody extends StatelessWidget {
                   ),
                   MasterTextField(
                     controller: bloc.scientificName,
-                    sidePadding: 35,
+                    sidePadding: 15,
                     hintText: tr("scientific_title"),
                     prefixIcon: title,
                     errorText: bloc.validators[0],
@@ -72,7 +72,7 @@ class ProviderRegisterBody extends StatelessWidget {
                   ),
                   MasterTextField(
                     controller: bloc.firstName,
-                    sidePadding: 35,
+                    sidePadding: 15,
                     hintText: tr("first_name"),
                     prefixIcon: firstName,
                     errorText: bloc.validators[1],
@@ -83,7 +83,7 @@ class ProviderRegisterBody extends StatelessWidget {
                   ),
                   MasterTextField(
                     controller: bloc.lastName,
-                    sidePadding: 35,
+                    sidePadding: 15,
                     hintText: tr("last_name"),
                     prefixIcon: lastName,
                     errorText: bloc.validators[2],
@@ -94,7 +94,7 @@ class ProviderRegisterBody extends StatelessWidget {
                   ),
                   MasterTextField(
                     controller: bloc.degree,
-                    sidePadding: 35,
+                    sidePadding: 15,
                     hintText: tr("degree"),
                     prefixIcon: title,
                     errorText: bloc.validators[6],
@@ -104,7 +104,7 @@ class ProviderRegisterBody extends StatelessWidget {
                     boxHeight: 10,
                   ),
                   SidePadding(
-                    sidePadding: 35,
+                    sidePadding: 15,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -179,12 +179,11 @@ class ProviderRegisterBody extends StatelessWidget {
                     boxHeight: 10,
                   ),
                   SidePadding(
-                    sidePadding: 35,
+                    sidePadding: 15,
                     child: Container(
                       height: 70.h,
                       width: screenWidth,
                       decoration: BoxDecoration(
-                        border: Border.all(color: textfieldColor),
                         borderRadius: BorderRadius.circular(5.r),
                       ),
                       child: SidePadding(
@@ -233,7 +232,7 @@ class ProviderRegisterBody extends StatelessWidget {
                   ),
                   MasterTextField(
                     controller: bloc.email,
-                    sidePadding: 35,
+                    sidePadding: 15,
                     hintText: tr("email"),
                     prefixIcon: email,
                     errorText: bloc.validators[3],
@@ -244,7 +243,7 @@ class ProviderRegisterBody extends StatelessWidget {
                   ),
                   MasterTextField(
                     controller: bloc.password,
-                    sidePadding: 35,
+                    sidePadding: 15,
                     isPassword: bloc.isPassword,
                     suffixColor: textfieldColor,
                     suffixIcon: "eye",
@@ -259,7 +258,7 @@ class ProviderRegisterBody extends StatelessWidget {
                   ),
                   MasterTextField(
                     controller: bloc.confirm,
-                    sidePadding: 35,
+                    sidePadding: 15,
                     isPassword: bloc.isConfirm,
                     suffixColor: textfieldColor,
                     suffixIcon: "eye",
@@ -298,7 +297,7 @@ class ProviderRegisterBody extends StatelessWidget {
                   MasterLoadButton(
                       buttonController: bloc.authController,
                       onPressed: () => bloc.validateEmail(),
-                      sidePadding: 35,
+                      sidePadding: 15,
                       buttonText: tr("next")),
                   const Space(
                     boxHeight: 20,

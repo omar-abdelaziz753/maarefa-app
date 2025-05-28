@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:my_academy/res/drawable/icon/icons.dart';
 import 'package:my_academy/res/value/color/color.dart';
 import 'package:my_academy/res/value/dimenssion/dimenssions.dart';
+
 import '../../../res/value/style/textstyles.dart';
 import '../../../widget/logo/logo/logo.dart';
 import '../../../widget/side_padding/side_padding.dart';
@@ -38,7 +39,7 @@ class RequestCourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SidePadding(
-      sidePadding: 35,
+      sidePadding: 15,
       // child: GestureDetector(
       //   onTap: () {
       //     Get.to(const RequsetAndDownload());

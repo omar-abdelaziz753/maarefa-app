@@ -59,7 +59,7 @@ class RequestsSentScreen extends StatelessWidget {
             builder: (context, state) {
           final bloc = ProviderRequestsCubit.get(context);
           return SidePadding(
-              sidePadding: 30,
+              sidePadding: 15,
               child: CustomList(
                 listHeight: 1000000000000000,
                 listWidth: screenWidth,
@@ -76,23 +76,21 @@ class RequestsSentScreen extends StatelessWidget {
                     CardContact(
                         acceptController: bloc.acceptController,
                         rejectController: bloc.rejectControl,
-                        acceptTap: () =>
-                          bloc.acceptRequest(bloc.requestModel.isEmpty
-                              ? data[index].id!
-                              : bloc.requestModel[index].id!),
-                        
+                        acceptTap: () => bloc.acceptRequest(
+                            bloc.requestModel.isEmpty
+                                ? data[index].id!
+                                : bloc.requestModel[index].id!),
                         rejectTap: () {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
                               return AdvanceCustomAlert(
                                 controller: bloc.rejectController,
-                                onTap: () =>
-                                  bloc.rejectRequest(
-                                      bloc.requestModel.isEmpty
-                                          ? data[index].id!
-                                          : bloc.requestModel[index].id!,
-                                      type),
+                                onTap: () => bloc.rejectRequest(
+                                    bloc.requestModel.isEmpty
+                                        ? data[index].id!
+                                        : bloc.requestModel[index].id!,
+                                    type),
                               );
                             },
                           );

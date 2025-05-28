@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SidePadding(
-                        sidePadding: 35,
+                        sidePadding: 15,
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       boxHeight: 35,
                     ),
                     MasterTextField(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       hintText: tr("email"),
                       prefixIcon: email,
                       controller: bloc.email,
@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       boxHeight: 15,
                     ),
                     MasterTextField(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       hintText: tr("password"),
                       suffixIcon: "eye",
                       suffixTap: () => bloc.securePassword(),
@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ? const Loading()
                         : MasterLoadButton(
                             buttonText: tr("login"),
-                            sidePadding: 35,
+                            sidePadding: 15,
                             buttonController: bloc.authController,
                             onPressed: () {
                               // isUser ?

@@ -20,29 +20,72 @@ class EmptyScreen extends StatelessWidget {
       required this.height,
       this.color});
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   return SidePadding(
+  //     sidePadding: 40,
+  //     child: SizedBox(
+  //       height: height,
+  //       width: width,
+  //       child: Column(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         crossAxisAlignment: CrossAxisAlignment.center,
+  //         children: [
+  //           Image.asset(image,
+  //               height: height / 2,
+  //               fit: BoxFit.contain,
+  //               color: color ?? mainColor.withOpacity(0.1)),
+  //           Space(
+  //             boxHeight: 30.h,
+  //           ),
+  //           Text(
+  //             tr(title),
+  //             style: TextStyles.titleStyle.copyWith(color: color ?? blackColor),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
     return SidePadding(
-      sidePadding: 40,
-      child: SizedBox(
+      sidePadding: 10,
+      child: Container(
         height: height,
-        width: width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(image,
-                height: height / 2,
-                fit: BoxFit.contain,
-                color: color ?? mainColor.withOpacity(0.1)),
-            Space(
-              boxHeight: 30.h,
-            ),
-            Text(
-              tr(title),
-              style: TextStyles.titleStyle.copyWith(color: color ?? blackColor),
-            ),
-          ],
+        // width: width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.grey.withOpacity(0.03),
+          //     blurRadius: 6,
+          //     offset: const Offset(0, 2),
+          //   ),
+          // ],
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  image,
+                  height: height / 2,
+                  fit: BoxFit.contain,
+                  color: color ?? grey.withOpacity(0.1),
+                ),
+              ),
+              Space(boxHeight: 30.h),
+              Text(
+                tr(title),
+                style: TextStyles.titleStyle.copyWith(color: color ?? grey),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );
