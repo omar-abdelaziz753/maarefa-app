@@ -70,7 +70,7 @@ class HomeHeader extends StatelessWidget {
               ? Get.to(const NotificationsScreen(isUser: true))
               : Get.to(const NotificationsScreen(isUser: false)),
         ),
-        const SizedBox(width: 20),
+        const SizedBox(width: 15),
       ],
     );
   }

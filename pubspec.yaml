@@ -13,6 +13,7 @@ environment:
   sdk: ">=3.0.5 <4.0.1"
 
 dependencies:
+  iconsax:
   bloc: ^9.0.0
   cached_network_image: ^3.4.1
   card_swiper: ^3.0.1
@@ -70,6 +71,8 @@ dependencies:
   url_launcher: ^6.1.6
   share_plus: ^10.1.4
   # wakelock: ^0.6.2
+#  iconsax_flutter: ^1.0.0
+
 dependency_overrides:
   intl: ^0.17.0
   http: ^1.0.0

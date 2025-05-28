@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../res/value/color/color.dart';
+// import 'package:iconsax/iconsax.dart';
 
 class NotificationButton extends StatelessWidget {
   final int count;
-  const NotificationButton({super.key, required this.count, required this.onTap});
+
+  const NotificationButton(
+      {super.key, required this.count, required this.onTap});
+
   final void Function() onTap;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -25,7 +31,24 @@ class NotificationButton extends StatelessWidget {
               color: white,
             ),
             child: Center(
-                child: Icon(Icons.notifications, color: mainColor, size: 25.r)),
+              // child: Icon(
+              //   Iconsax.notification,
+              //   color: mainColor,
+              //   size: 25.r,
+              // ),
+              // ),
+              // child: Icon(
+              //   Icons.notifications_none_outlined,
+              //   color: mainColor,
+              //   size: 30.sp,
+              // ),
+              child: SvgPicture.asset(
+                "assets/images/notification_icon2.svg",
+                color: mainColor,
+                height: 35.r,
+                width: 35.r,
+              ),
+            ),
           ),
           count > 0
               ? Icon(Icons.circle, color: circleColor, size: 15.r)

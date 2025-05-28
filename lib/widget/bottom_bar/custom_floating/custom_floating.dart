@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../res/value/color/color.dart';
 
@@ -122,58 +123,112 @@ ItemBuilder _defaultItemBuilder({
   double? borderRadius,
   TextStyle? textStyle,
 }) {
-  return (BuildContext context, CustomFloatingNavbarItem item) => Expanded(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
+  return (BuildContext context, CustomFloatingNavbarItem item) {
+    final isSelected = currentIndex == items!.indexOf(item);
+    final color = isSelected ? mainColor : grey;
+
+    return Expanded(
+      child: InkWell(
+        onTap: () => onTap!(items.indexOf(item)),
+        borderRadius: BorderRadius.circular(8),
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              // duration: Duration(milliseconds: 300),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(itemBorderRadius!)),
-              child: InkWell(
-                onTap: () {
-                  onTap!(items.indexOf(item));
-                },
-                borderRadius: BorderRadius.circular(8),
-                child: Container(
-                  width: width.isFinite
-                      ? (width / items!.length - 8)
-                      : MediaQuery.of(context).size.width / items!.length - 24,
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 4, vertical: item.title != null ? 4 : 8),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      item.customWidget == null
-                          ? currentIndex == items.indexOf(item)
-                              ? Icon(
-                                  Icons.circle,
-                                  color: accentColor,
-                                  size: dotSize,
-                                )
-                              : Image.asset(item.icon!,
-                                  height: iconSize,
-                                  color: accentColor,
-                                  fit: BoxFit.contain)
-                          : item.customWidget!,
-                      if (currentIndex == items.indexOf(item))
-                        Text(
-                          '${item.title}',
-                          overflow: TextOverflow.ellipsis,
-                          style: textStyle!.copyWith(color: primaryText),
-                        ),
-                    ],
-                  ),
-                ),
-              ),
+          children: [
+            Image.asset(
+              item.icon!,
+              height: iconSize,
+              color: color,
+              fit: BoxFit.contain,
             ),
+            const SizedBox(height: 4),
+            if (isSelected)
+              Text(
+                item.title!,
+                style: textStyle?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12.sp,
+                  color: color,
+                ) ??
+                    TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w600,
+                      color: color,
+                    ),
+              ),
           ],
         ),
-      );
+      ),
+    );
+  };
 }
+// ItemBuilder _defaultItemBuilder({
+//   Function(int val)? onTap,
+//   List<CustomFloatingNavbarItem>? items,
+//   int? currentIndex,
+//   Color? selectedBackgroundColor,
+//   Color? selectedItemColor,
+//   Color? unselectedItemColor,
+//   Color? backgroundColor,
+//   double width = double.infinity,
+//   double? fontSize,
+//   double? iconSize,
+//   double? dotSize,
+//   double? itemBorderRadius,
+//   double? borderRadius,
+//   TextStyle? textStyle,
+// }) {
+//   return (BuildContext context, CustomFloatingNavbarItem item) => Expanded(
+//         child: Row(
+//           mainAxisSize: MainAxisSize.min,
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             Container(
+//               // duration: Duration(milliseconds: 300),
+//               decoration: BoxDecoration(
+//                   borderRadius: BorderRadius.circular(itemBorderRadius!)),
+//               child: InkWell(
+//                 onTap: () {
+//                   onTap!(items.indexOf(item));
+//                 },
+//                 borderRadius: BorderRadius.circular(8),
+//                 child: Container(
+//                   width: width.isFinite
+//                       ? (width / items!.length - 8)
+//                       : MediaQuery.of(context).size.width / items!.length - 24,
+//                   padding: EdgeInsets.symmetric(
+//                       horizontal: 4, vertical: item.title != null ? 4 : 8),
+//                   child: Column(
+//                     mainAxisSize: MainAxisSize.max,
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     crossAxisAlignment: CrossAxisAlignment.center,
+//                     children: <Widget>[
+//                       item.customWidget == null
+//                           ? currentIndex == items.indexOf(item)
+//                               ? Icon(
+//                                   Icons.circle,
+//                                   color: accentColor,
+//                                   size: dotSize,
+//                                 )
+//                               : Image.asset(item.icon!,
+//                                   height: iconSize,
+//                                   color: accentColor,
+//                                   fit: BoxFit.contain)
+//                           : item.customWidget!,
+//                       if (currentIndex == items.indexOf(item))
+//                         Text(
+//                           '${item.title}',
+//                           overflow: TextOverflow.ellipsis,
+//                           style: textStyle!.copyWith(color: primaryText),
+//                         ),
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       );
+// }
 
 class CustomFloatingNavbarItem {
   final String? title;
