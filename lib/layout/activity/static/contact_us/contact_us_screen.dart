@@ -116,38 +116,38 @@ class ContactUsScreen extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                                child: Center(
-                              child: Container(
-                                height: 2,
-                                decoration: BoxDecoration(
-                                    color: mainColor,
-                                    borderRadius: BorderRadius.circular(12)),
-                              ),
-                            )),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child: Text(tr("or"),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyles.textView16Bold
-                                      .copyWith(color: white)),
-                            ),
-                            Expanded(
-                                child: Container(
-                              height: 2,
-                              decoration: BoxDecoration(
-                                  color: mainColor,
-                                  borderRadius: BorderRadius.circular(12)),
-                            )),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        // Row(
+                        //   crossAxisAlignment: CrossAxisAlignment.center,
+                        //   children: [
+                        //     Expanded(
+                        //         child: Center(
+                        //       child: Container(
+                        //         height: 2,
+                        //         decoration: BoxDecoration(
+                        //             color: mainColor,
+                        //             borderRadius: BorderRadius.circular(12)),
+                        //       ),
+                        //     )),
+                        //     Padding(
+                        //       padding:
+                        //           const EdgeInsets.symmetric(horizontal: 8),
+                        //       child: Text(tr("or"),
+                        //           textAlign: TextAlign.center,
+                        //           style: TextStyles.textView16Bold
+                        //               .copyWith(color: white)),
+                        //     ),
+                        //     Expanded(
+                        //         child: Container(
+                        //       height: 2,
+                        //       decoration: BoxDecoration(
+                        //           color: mainColor,
+                        //           borderRadius: BorderRadius.circular(12)),
+                        //     )),
+                        //   ],
+                        // ),
+                        // const SizedBox(
+                        //   height: 10,
+                        // ),
                         Expanded(
                           child: ListView(
                             children: [
