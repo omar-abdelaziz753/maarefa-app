@@ -1,9 +1,11 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_academy/layout/activity/static/empty_screens/empty_screens.dart';
+import 'package:my_academy/layout/view/home/provider/provider_home_view.dart';
 
 import '../../../../../widget/error/page/error_page.dart';
 import '../../../../../widget/loader/loader.dart';
@@ -248,6 +250,26 @@ class HomeCacheView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Space(boxHeight: 20),
+                  SizedBox(
+                    height: 150.sp,
+                    child: Swiper(
+                      autoplay: true,
+                      itemCount: images.length,
+                      itemBuilder: (context, index) => ClipRRect(
+                        // padding: EdgeInsets.symmetric(horizontal: 5.sp),
+                        borderRadius: BorderRadius.circular(15.r),
+                        child: Image.asset(
+                          images[index],
+                          width: screenWidth,
+                          // height: 150,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      viewportFraction: 1,
+                      scale: 0.9,
+                    ),
+                  ),
+
                   Text(
                     tr("request"),
                     style: TextStyles.titleStyle.copyWith(color: mainColor),
