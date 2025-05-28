@@ -39,7 +39,7 @@
 //                       boxHeight: 35,
 //                     ),
 //                     const SidePadding(
-//                       sidePadding: 35,
+//                       sidePadding: 15,
 //                       child: StepProgressIndicator(
 //                         totalSteps: 5,
 //                         currentStep: 5,
@@ -51,7 +51,7 @@
 //                       boxHeight: 20,
 //                     ),
 //                     SidePadding(
-//                       sidePadding: 35,
+//                       sidePadding: 15,
 //                       child: Column(
 //                         crossAxisAlignment: CrossAxisAlignment.start,
 //                         children: [
@@ -99,7 +99,7 @@
 //                         onPressed: () {
 //                           Get.to(() => const ProviderMainScreen());
 //                         },
-//                         sidePadding: 35,
+//                         sidePadding: 15,
 //                         buttonText: tr("next")),
 //                     const Space(
 //                       boxHeight: 100,

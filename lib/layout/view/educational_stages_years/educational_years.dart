@@ -53,7 +53,7 @@ class YearsView extends StatelessWidget {
           builder: (context, state) {
             final bloc = EducationalStagesCubit.get(context);
             return SidePadding(
-              sidePadding: 35,
+              sidePadding: 15,
               child: ListView(
                 children: [
                   LimitedBox(

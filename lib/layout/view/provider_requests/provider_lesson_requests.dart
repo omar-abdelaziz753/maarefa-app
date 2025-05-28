@@ -13,7 +13,6 @@ import '../../../../bloc/provider_requests/provider_requests_cubit.dart';
 import '../../../../repository/provider/requests/requests_repository.dart';
 import '../../../../widget/space/space.dart';
 import '../../../res/drawable/image/images.dart';
-import '../../../res/value/color/color.dart';
 import '../../activity/static/empty_screens/empty_screens.dart';
 import 'provider_lesson_requests_cache.dart';
 
@@ -79,7 +78,7 @@ class ProviderRequestsSubjectView extends StatelessWidget {
                         image: emptyCurrent,
                         width: screenWidth,
                         height: screenHeight / 3,
-                        color: mainColor.withOpacity(0.3),
+                        // color: mainColor.withOpacity(0.3),
                       ),
                     ],
                   ),

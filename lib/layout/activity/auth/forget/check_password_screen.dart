@@ -1,4 +1,5 @@
 import 'dart:ui' as ui;
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +42,7 @@ class CheckPasswordScreen extends StatelessWidget {
                       boxHeight: 80,
                     ),
                     SidePadding(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -101,7 +102,7 @@ class CheckPasswordScreen extends StatelessWidget {
                           bloc.checkCode(email);
                         }
                       },
-                      sidePadding: 35,
+                      sidePadding: 15,
                       buttonText: tr("confirm"),
                       buttonController: bloc.authController,
                     ),

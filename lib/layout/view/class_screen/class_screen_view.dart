@@ -97,7 +97,7 @@ class _ClassScreenViewState extends State<ClassScreenView> {
             ),
 
             SidePadding(
-              sidePadding: 35,
+              sidePadding: 15,
               child: CustomList(
                 listHeight: 40,
                 listWidth: screenWidth,

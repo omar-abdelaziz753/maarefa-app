@@ -27,7 +27,7 @@ class SubscribersItems extends StatelessWidget {
             builder: (context, state) {
               final bloc = SubscribersCubit.get(context);
               return SidePadding(
-                sidePadding: 35,
+                sidePadding: 15,
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(

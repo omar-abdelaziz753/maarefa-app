@@ -48,7 +48,7 @@ class ProviderRequestsScreen extends StatelessWidget {
                       ),
                       bloc.isSubject
                           ? const SidePadding(
-                              sidePadding: 35,
+                              sidePadding: 15,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -57,7 +57,7 @@ class ProviderRequestsScreen extends StatelessWidget {
                               ),
                             )
                           : const SidePadding(
-                              sidePadding: 35,
+                              sidePadding: 15,
                               child: Column(
                                 children: [ProviderRequestsCourseView()],
                               ),

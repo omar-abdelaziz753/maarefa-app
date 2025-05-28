@@ -110,7 +110,7 @@ class _CourseCard3State extends State<CourseCard3> {
           ),
         ),
         SidePadding(
-          sidePadding: 35,
+          sidePadding: 15,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

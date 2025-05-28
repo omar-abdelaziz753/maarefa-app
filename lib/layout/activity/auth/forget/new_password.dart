@@ -31,7 +31,7 @@ class NewPasswordScreen extends StatelessWidget {
                       boxHeight: 80,
                     ),
                     SidePadding(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -53,7 +53,7 @@ class NewPasswordScreen extends StatelessWidget {
                       boxHeight: 40.h,
                     ),
                     MasterTextField(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       hintText: tr("new_password"),
                       suffixIcon: "eye",
                       errorText: bloc.validators[0],
@@ -66,7 +66,7 @@ class NewPasswordScreen extends StatelessWidget {
                       boxHeight: 30.h,
                     ),
                     MasterTextField(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       suffixIcon: "eye",
                       errorText: bloc.validators[1],
                       hintText: tr("confirm_password"),
@@ -84,7 +84,7 @@ class NewPasswordScreen extends StatelessWidget {
                           bloc.resetPassword(email, code);
                           // Get.to(() => const MainScreen());
                         },
-                        sidePadding: 35,
+                        sidePadding: 15,
                         buttonText: tr("confirm")),
                     const Space(
                       boxHeight: 100,

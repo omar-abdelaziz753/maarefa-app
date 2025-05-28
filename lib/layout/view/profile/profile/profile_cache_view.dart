@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:my_academy/bloc/auth/show_delete_and_payment./show_delete_and_paymnet_cubit.dart';
 import 'package:my_academy/layout/activity/provider_screens/account_data/account_data_screen.dart';
 import 'package:my_academy/layout/activity/provider_screens/account_data/edit_account_information_screen.dart';
+
 import '../../../../../widget/error/page/error_page.dart';
 import '../../../../bloc/auth/provider/auth_provider_cubit.dart';
 import '../../../../bloc/profile/provider/provider_cubit.dart';
@@ -95,8 +96,16 @@ class ProfileCacheView extends StatelessWidget {
                             child: Container(
                               height: 70,
                               decoration: BoxDecoration(
-                                  color: const Color(0xffDDE3E7),
-                                  borderRadius: BorderRadius.circular(12)),
+                                color: Colors.white, // Background white
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    blurRadius: 6,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ],
+                              ),
                               child: Row(
                                 children: [
                                   const SizedBox(
@@ -125,7 +134,7 @@ class ProfileCacheView extends StatelessWidget {
                                           fontWeight: FontWeight.bold)),
                                   const Spacer(),
                                   const Icon(Icons.arrow_forward_ios,
-                                      color: primaryText),
+                                      color: mainColor),
                                   const SizedBox(
                                     width: 16,
                                   ),

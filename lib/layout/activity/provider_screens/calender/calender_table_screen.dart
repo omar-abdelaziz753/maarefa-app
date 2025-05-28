@@ -31,7 +31,7 @@ class CalenderScreen extends StatelessWidget {
               return Scaffold(
                   appBar: DefaultAppBar(title: tr("available_appointments")),
                   body: SidePadding(
-                    sidePadding: 35,
+                    sidePadding: 15,
                     child: ListView(
                       children: [
                         const Space(

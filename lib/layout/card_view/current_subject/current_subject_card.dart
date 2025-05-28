@@ -43,7 +43,7 @@ class CurrentSubjectCard extends StatelessWidget {
             builder: (context, state) {
               final bloc = LiveCubit.get(context);
               return SidePadding(
-                sidePadding: 35,
+                sidePadding: 15,
                 child: Container(
                   height: 160,
                   width: screenWidth,
@@ -168,7 +168,6 @@ class CurrentSubjectCard extends StatelessWidget {
                                       width: screenWidth,
                                       height: 40.h,
                                       color: mainLightColor,
-                                      
                                       child: Center(
                                           child: Text(tr("enter_lesson"),
                                               style: TextStyles.unselectedStyle
@@ -196,8 +195,8 @@ class CurrentSubjectCard extends StatelessWidget {
                                                       .unselectedStyle
                                                       .copyWith(
                                                           color: white,
-                                                          fontWeight:
-                                                              FontWeight.w700))),
+                                                          fontWeight: FontWeight
+                                                              .w700))),
                                         ),
                                       ),
                                     )

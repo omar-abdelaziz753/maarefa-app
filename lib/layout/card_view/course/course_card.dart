@@ -36,7 +36,7 @@ class CourseCard extends StatelessWidget {
     return GestureDetector(
       onTap: onPress,
       child: SidePadding(
-        sidePadding: 35,
+        sidePadding: 15,
         child: Stack(
           alignment: FractionalOffset.center,
           children: [

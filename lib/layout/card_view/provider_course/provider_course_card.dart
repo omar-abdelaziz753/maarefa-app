@@ -4,13 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../res/drawable/image/images.dart';
 import '../../../res/value/color/color.dart';
-import '../../../res/value/dimenssion/dimenssions.dart';
-import '../../../res/value/style/textstyles.dart';
-import '../../../widget/logo/logo/logo.dart';
-import '../../../widget/side_padding/side_padding.dart';
-import '../../../widget/space/space.dart';
 import '../../activity/provider_screens/course_details/course_details.dart';
 
 class ProviderCourseCard extends StatelessWidget {
@@ -19,143 +13,152 @@ class ProviderCourseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SidePadding(
-      sidePadding: 35,
-      child: InkWell(
-        onTap: () => Get.to(() => CourseDetails(
-              id: data.id,
-            )),
-        child: Container(
-          width: screenWidth,
-          decoration: BoxDecoration(
-              color: white,
-              borderRadius: BorderRadius.circular(5.r),
-              border: Border.all(color: profileBorderCardColor)),
-          child: Padding(
-            padding: EdgeInsets.all(10.w),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              SizedBox(
-                width: 100.w,
-                height: 120.h,
-                child: Stack(
-                  alignment: FractionalOffset.topCenter,
-                  children: [
-                    Positioned.fill(
-                      child: Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        semanticContainer: true,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.r)),
-                        child: CachedNetworkImage(
-                            imageUrl: data.image ?? "",
-                            width: 90.w,
-                            height: 90.h,
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => const Logo(
-                                  logoHeight: 75,
-                                  logoWidth: 80,
-                                )),
+    return InkWell(
+      onTap: () => Get.to(() => CourseDetails(id: data.id)),
+      borderRadius: BorderRadius.circular(12.r),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              blurRadius: 6,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Image with rating
+            Expanded(
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12.r),
+                      topRight: Radius.circular(12.r),
+                    ),
+                    child: CachedNetworkImage(
+                      imageUrl: data.image ?? "",
+                      // height: 90.h,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => Container(
+                        color: Colors.grey[200],
+                        child: Center(child: CircularProgressIndicator()),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 8.h),
-                      child: Container(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        width: 55.w,
-                        height: 25.h,
-                        decoration: BoxDecoration(
-                            color: white,
-                            borderRadius: BorderRadius.circular(5.r)),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              star,
-                              height: 15.h,
-                              fit: BoxFit.contain,
+                  ),
+                  Positioned(
+                    top: 8.h,
+                    left: 8.w,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 6.w,
+                        vertical: 2.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(4.r),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.star,
+                            size: 14.sp,
+                            color: Colors.amber,
+                          ),
+                          SizedBox(width: 2.w),
+                          Text(
+                            data?.provider?.rate.toString() ?? '0.0',
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.bold,
+                              color: secColor,
                             ),
-                            const Space(
-                              boxWidth: 5,
-                            ),
-                            Text(
-                              data?.provider?.rate.toString() ?? '',
-                              style: TextStyles.subTitleStyle.copyWith(
-                                  color: secColor, fontWeight: FontWeight.w700),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
+            ),
+
+            // Course details
+            Padding(
+              padding: EdgeInsets.all(8.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Title and Price
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
                           data.name.toString(),
-                          softWrap: true,
+                          maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyles.textView16Bold,
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              data.price.toString(),
-                              style: TextStyles.priceStyle,
-                            ),
-                            Text(
-                              e.tr("sar"),
-                              style: TextStyles.hintStyle
-                                  .copyWith(color: blackColor),
-                            ),
-                          ],
+                      ),
+                      Text(
+                        "${data.price.toString()} ${e.tr("sar")}",
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.bold,
+                          color: mainColor,
                         ),
-                      ],
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 4.h),
+
+                  // Category
+                  Text(
+                    data.specialization?.name.toString() ?? "",
+                    style: TextStyle(
+                      fontSize: 10.sp,
+                      color: Colors.grey[600],
                     ),
-                    Text(
-                      data.specialization!.name.toString(),
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyles.hintStyle,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("${data.subscriptions} ${e.tr("subscriber")}",
-                            style: TextStyles.textView12Bold),
+                  ),
+
+                  SizedBox(height: 8.h),
+
+                  // Bottom row (subscribers and date)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "${data.subscriptions} ${e.tr("subscriber")}",
+                        style: TextStyle(
+                          fontSize: 10.sp,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      if (data.nextTime != null && data.nextTime != "")
                         Text(
-                            data.nextTime == ""
-                                ? ""
-                                : e.DateFormat("d/MM/yy h:m:s", "en")
-                                    .format(DateTime.parse(data.nextTime)),
-                            style: TextStyles.errorStyle.copyWith(
-                                color: textfieldColor, fontSize: 14.sp)),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(e.tr("course_details"),
-                            style: TextStyles.unselectedStyle.copyWith(
-                                color: mainColor, fontWeight: FontWeight.bold)),
-                        const Space(
-                          boxWidth: 5,
+                          e.DateFormat("d/MM/yy")
+                              .format(DateTime.parse(data.nextTime)),
+                          style: TextStyle(
+                            fontSize: 10.sp,
+                            color: Colors.grey[600],
+                          ),
                         ),
-                        Image.asset(moreInfo,
-                            height: 10.h, fit: BoxFit.contain),
-                      ],
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ),
-            ]),
-          ),
+            ),
+          ],
         ),
       ),
     );

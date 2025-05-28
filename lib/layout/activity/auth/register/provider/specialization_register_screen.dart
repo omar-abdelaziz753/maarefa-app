@@ -23,7 +23,7 @@ class SpecializationRegisterScreen extends StatelessWidget {
             boxHeight: 35,
           ),
           const SidePadding(
-            sidePadding: 35,
+            sidePadding: 15,
             child: StepProgressIndicator(
               totalSteps: 5,
               currentStep: 3,
@@ -35,7 +35,7 @@ class SpecializationRegisterScreen extends StatelessWidget {
             boxHeight: 20,
           ),
           SidePadding(
-            sidePadding: 35,
+            sidePadding: 15,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -37,7 +37,7 @@ class AboutRegisterScreen extends StatelessWidget {
                       boxHeight: 35,
                     ),
                     const SidePadding(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       child: StepProgressIndicator(
                         totalSteps: 5,
                         currentStep: 2,
@@ -49,7 +49,7 @@ class AboutRegisterScreen extends StatelessWidget {
                       boxHeight: 20,
                     ),
                     SidePadding(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -103,7 +103,7 @@ class AboutRegisterScreen extends StatelessWidget {
                     ),
                     MasterButton(
                         onPressed: () => bloc.validateBio(data),
-                        sidePadding: 35,
+                        sidePadding: 15,
                         buttonText: tr("next")),
                     const Space(
                       boxHeight: 50,

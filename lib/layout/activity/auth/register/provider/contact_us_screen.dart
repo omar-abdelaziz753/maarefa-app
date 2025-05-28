@@ -34,7 +34,7 @@
 //                 boxHeight: 40,
 //               ),
 //               SidePadding(
-//                 sidePadding: 35,
+//                 sidePadding: 15,
 //                 child: Column(
 //                   crossAxisAlignment: CrossAxisAlignment.center,
 //                   children: [
@@ -52,28 +52,28 @@
 //               ),
 //               Space(boxHeight: 10.h),
 //               Master2TextField(
-//                 sidePadding: 35,
+//                 sidePadding: 15,
 //                 hintText: tr("name"),
 //               ),
 //               Space(
 //                 boxHeight: 30.h,
 //               ),
 //               Master2TextField(
-//                 sidePadding: 35,
+//                 sidePadding: 15,
 //                 hintText: tr("phone2"),
 //               ),
 //               Space(
 //                 boxHeight: 30.h,
 //               ),
 //               Master2TextField(
-//                 sidePadding: 35,
+//                 sidePadding: 15,
 //                 hintText: tr("email"),
 //               ),
 //               Space(
 //                 boxHeight: 30.h,
 //               ),
 //               Master2TextField(
-//                 sidePadding: 35,
+//                 sidePadding: 15,
 //                 hintText: tr("messege"),
 //                 maxLines: 5,
 //                 minLines: 5,
@@ -83,7 +83,7 @@
 //                 boxHeight: 30.h,
 //               ),
 //               MasterButton(
-//                   onPressed: () {}, sidePadding: 35, buttonText: tr("send")),
+//                   onPressed: () {}, sidePadding: 15, buttonText: tr("send")),
 //               const Space(
 //                 boxHeight: 100,
 //               ),

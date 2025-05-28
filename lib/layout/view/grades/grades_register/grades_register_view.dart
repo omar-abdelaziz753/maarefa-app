@@ -50,7 +50,7 @@ class GradesRegisterView extends StatelessWidget {
             builder: (context, state) {
               final bloc = AuthProviderCubit.get(context);
               return SidePadding(
-                sidePadding: 35,
+                sidePadding: 15,
                 child: Column(
                   children: [
                     Wrap(

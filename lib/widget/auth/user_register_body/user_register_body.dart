@@ -58,7 +58,7 @@ class _UserRegisterBodyState extends State<UserRegisterBody> {
                       const Space(boxHeight: 10),
                       MasterTextField(
                         controller: bloc.firstName,
-                        sidePadding: 35,
+                        sidePadding: 15,
                         hintText: tr("first_name"),
                         prefixIcon: firstName,
                         errorText: bloc.validators[0],
@@ -69,7 +69,7 @@ class _UserRegisterBodyState extends State<UserRegisterBody> {
                       ),
                       MasterTextField(
                         controller: bloc.lastName,
-                        sidePadding: 35,
+                        sidePadding: 15,
                         hintText: tr("last_name"),
                         prefixIcon: firstName,
                         errorText: bloc.validators[1],
@@ -79,7 +79,7 @@ class _UserRegisterBodyState extends State<UserRegisterBody> {
                         boxHeight: 15,
                       ),
                       SidePadding(
-                        sidePadding: 35,
+                        sidePadding: 15,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -169,7 +169,7 @@ class _UserRegisterBodyState extends State<UserRegisterBody> {
                         boxHeight: 15,
                       ),
                       // SidePadding(
-                      //   sidePadding: 35,
+                      //   sidePadding: 15,
                       //   child: Container(
                       //     height: 73.h,
                       //     width: screenWidth,
@@ -233,12 +233,11 @@ class _UserRegisterBodyState extends State<UserRegisterBody> {
                       // ),
                       ///=======================================================
                       SidePadding(
-                        sidePadding: 35,
+                        sidePadding: 15,
                         child: Container(
                           height: 70.h,
                           width: screenWidth,
                           decoration: BoxDecoration(
-                            border: Border.all(color: textfieldColor),
                             borderRadius: BorderRadius.circular(10.r),
                           ),
                           child: SidePadding(
@@ -288,7 +287,7 @@ class _UserRegisterBodyState extends State<UserRegisterBody> {
                         boxHeight: 15,
                       ),
                       SidePadding(
-                        sidePadding: 35,
+                        sidePadding: 15,
                         child: BuildDropDown(
                           isExpanded: true,
                           value: bloc.city,
@@ -322,7 +321,7 @@ class _UserRegisterBodyState extends State<UserRegisterBody> {
                       ),
                       MasterTextField(
                         controller: bloc.email,
-                        sidePadding: 35,
+                        sidePadding: 15,
                         hintText: tr("email"),
                         prefixIcon: email,
                         errorText: bloc.validators[2],
@@ -333,7 +332,7 @@ class _UserRegisterBodyState extends State<UserRegisterBody> {
                       ),
                       MasterTextField(
                         controller: bloc.phone,
-                        sidePadding: 35,
+                        sidePadding: 15,
                         hintText: tr("phone"),
                         prefixIcon: phone,
                         errorText: bloc.validators[3],
@@ -345,7 +344,7 @@ class _UserRegisterBodyState extends State<UserRegisterBody> {
                       ),
                       MasterTextField(
                         controller: bloc.password,
-                        sidePadding: 35,
+                        sidePadding: 15,
                         hintText: tr("password"),
                         suffixTap: () => bloc.securePassword(),
                         prefixIcon: password,
@@ -360,7 +359,7 @@ class _UserRegisterBodyState extends State<UserRegisterBody> {
                       ),
                       MasterTextField(
                         controller: bloc.confirm,
-                        sidePadding: 35,
+                        sidePadding: 15,
                         isPassword: bloc.isConfirm,
                         suffixColor: textfieldColor,
                         suffixIcon: "eye",
@@ -400,7 +399,7 @@ class _UserRegisterBodyState extends State<UserRegisterBody> {
                       ),
                       MasterLoadButton(
                         onPressed: () => bloc.validateEmail(),
-                        sidePadding: 35,
+                        sidePadding: 15,
                         buttonText: tr("confirm"),
                         buttonController: bloc.authController,
                       ),

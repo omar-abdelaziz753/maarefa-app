@@ -29,7 +29,7 @@ class ProviderFinishedAppointments extends StatelessWidget {
                   ),
                   bloc.isSubject
                       ? SidePadding(
-                          sidePadding: 35,
+                          sidePadding: 15,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -40,7 +40,7 @@ class ProviderFinishedAppointments extends StatelessWidget {
                           ),
                         )
                       : SidePadding(
-                          sidePadding: 35,
+                          sidePadding: 15,
                           child: Column(
                             children: [
                               // SubjectAcademinScreen()

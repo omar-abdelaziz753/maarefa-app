@@ -20,7 +20,8 @@ class SpecificationRegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (BuildContext context) => AuthProviderCubit(AuthProviderRepository()),
+        create: (BuildContext context) =>
+            AuthProviderCubit(AuthProviderRepository()),
         child: BlocConsumer<AuthProviderCubit, AuthProviderState>(
             listener: (context, state) {},
             builder: (context, state) {
@@ -33,7 +34,7 @@ class SpecificationRegisterScreen extends StatelessWidget {
                       boxHeight: 35,
                     ),
                     const SidePadding(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       child: StepProgressIndicator(
                         totalSteps: 5,
                         currentStep: 3,
@@ -45,7 +46,7 @@ class SpecificationRegisterScreen extends StatelessWidget {
                       boxHeight: 20,
                     ),
                     SidePadding(
-                      sidePadding: 35,
+                      sidePadding: 15,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -93,8 +94,8 @@ class SpecificationRegisterScreen extends StatelessWidget {
                     ),
                     MasterButton(
                         // onPressed: () =>
-                            // Get.to(() => const GradesRegisterScreen()),
-                        sidePadding: 35,
+                        // Get.to(() => const GradesRegisterScreen()),
+                        sidePadding: 15,
                         buttonText: tr("next")),
                     const Space(
                       boxHeight: 100,

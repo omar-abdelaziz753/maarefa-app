@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:my_academy/layout/activity/provider_screens/add_contant/side_content_screen.dart';
 import 'package:my_academy/layout/view/connectivity/connectivity_view.dart';
+import 'package:my_academy/res/value/color/color.dart';
 import 'package:my_academy/widget/buttons/filter/filter_button.dart';
 
 import '../../../../bloc/check_provider/cubit/check_provider_cubit.dart';
@@ -15,6 +16,7 @@ class ProviderHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: scaffoldBackgroundColor,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 50.0),
         child: BlocProvider(

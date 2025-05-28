@@ -18,7 +18,7 @@ class AddContentScreen extends StatelessWidget {
     return Scaffold(
       appBar: DefaultAppBar(title: tr("add_content")),
       body: SidePadding(
-        sidePadding: 35,
+        sidePadding: 15,
         child: ListView(
           children: [
             Text(

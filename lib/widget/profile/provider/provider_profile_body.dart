@@ -60,7 +60,7 @@ class ProviderProfileBody extends StatelessWidget {
                   ),
                   MasterTextField(
                     controller: bloc.scientificName,
-                    sidePadding: 35,
+                    sidePadding: 15,
                     hintText: tr("scientific_title"),
                     prefixIcon: title,
                     errorText: bloc.validators[0],
@@ -71,7 +71,7 @@ class ProviderProfileBody extends StatelessWidget {
                   ),
                   MasterTextField(
                     controller: bloc.firstName,
-                    sidePadding: 35,
+                    sidePadding: 15,
                     hintText: tr("first_name"),
                     prefixIcon: firstName,
                     errorText: bloc.validators[1],
@@ -82,7 +82,7 @@ class ProviderProfileBody extends StatelessWidget {
                   ),
                   MasterTextField(
                     controller: bloc.lastName,
-                    sidePadding: 35,
+                    sidePadding: 15,
                     hintText: tr("last_name"),
                     prefixIcon: lastName,
                     errorText: bloc.validators[2],
@@ -93,7 +93,7 @@ class ProviderProfileBody extends StatelessWidget {
                   ),
                   MasterTextField(
                     controller: bloc.degree,
-                    sidePadding: 35,
+                    sidePadding: 15,
                     hintText: tr("degree"),
                     prefixIcon: title,
                     errorText: bloc.validators[4],
@@ -103,7 +103,7 @@ class ProviderProfileBody extends StatelessWidget {
                     boxHeight: 10,
                   ),
                   SidePadding(
-                    sidePadding: 35,
+                    sidePadding: 15,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -180,12 +180,11 @@ class ProviderProfileBody extends StatelessWidget {
                     boxHeight: 10,
                   ),
                   SidePadding(
-                    sidePadding: 35,
+                    sidePadding: 15,
                     child: Container(
                       height: 70.h,
                       width: screenWidth,
                       decoration: BoxDecoration(
-                        border: Border.all(color: textfieldColor),
                         borderRadius: BorderRadius.circular(5.r),
                       ),
                       child: SidePadding(
@@ -229,7 +228,7 @@ class ProviderProfileBody extends StatelessWidget {
                   MasterTextField(
                     controller: bloc.email,
                     readOnly: true,
-                    sidePadding: 35,
+                    sidePadding: 15,
                     hintText: tr("email"),
                     prefixIcon: email,
                     errorText: bloc.validators[3],
@@ -245,7 +244,7 @@ class ProviderProfileBody extends StatelessWidget {
                       buttonColor: profileColor,
                       borderColor: profileColor,
                       onPressed: () => Get.to(() => const ChangePassword()),
-                      sidePadding: 35,
+                      sidePadding: 15,
                       buttonText: tr("change_password"),
                       buttonStyle:
                           TextStyles.appBarStyle.copyWith(color: mainColor)),
@@ -255,7 +254,7 @@ class ProviderProfileBody extends StatelessWidget {
                   MasterLoadButton(
                       buttonController: bloc.controller,
                       onPressed: () => bloc.editProfile(),
-                      sidePadding: 35,
+                      sidePadding: 15,
                       buttonText: tr("updating_data")),
                   const Space(
                     boxHeight: 100,

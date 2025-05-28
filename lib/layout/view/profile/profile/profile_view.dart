@@ -99,8 +99,15 @@ class _ProfileViewState extends State<ProfileView> {
                           child: Container(
                             height: 70,
                             decoration: BoxDecoration(
-                                color: const Color(0xffDDE3E7),
-                                borderRadius: BorderRadius.circular(12)),
+                                color: Colors.white, // Background white
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    blurRadius: 6,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ]),
                             child: Row(
                               children: [
                                 const SizedBox(
@@ -135,7 +142,7 @@ class _ProfileViewState extends State<ProfileView> {
                                         fontWeight: FontWeight.bold)),
                                 const Spacer(),
                                 const Icon(Icons.arrow_forward_ios,
-                                    color: primaryText),
+                                    color: mainColor),
                                 const SizedBox(
                                   width: 16,
                                 ),

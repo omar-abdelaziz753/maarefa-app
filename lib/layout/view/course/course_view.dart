@@ -42,7 +42,7 @@ class CourseView extends StatelessWidget {
 
   courseView(context, List<Specialization>? data) {
     return SidePadding(
-      sidePadding: 35,
+      sidePadding: 15,
       child: ListView(
         children: [
           LimitedBox(

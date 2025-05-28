@@ -75,7 +75,7 @@ class SubscribeSubjectView extends StatelessWidget {
                         data.liveSubscription.isEmpty
                             ? const SizedBox()
                             : SidePadding(
-                                sidePadding: 35,
+                                sidePadding: 15,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
@@ -155,7 +155,7 @@ class SubscribeSubjectView extends StatelessWidget {
                           ),
                         )
                       : SidePadding(
-                          sidePadding: 35,
+                          sidePadding: 15,
                           child: Text(tr("subjects"),
                               textAlign: TextAlign.start,
                               style: TextStyles.unselectedStyle.copyWith(

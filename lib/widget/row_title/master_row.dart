@@ -18,13 +18,14 @@ class MasterRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SidePadding(
-      sidePadding: 35,
+      // sidePadding: 20,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
             style: TextStyles.appBarStyle
+                .copyWith(fontSize: 14.sp)
                 .copyWith(color: blackColor, fontWeight: FontWeight.bold),
           ),
           InkWell(
@@ -37,7 +38,7 @@ class MasterRow extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  subTitle,
+                  "$subTitle >>",
                   style: TextStyles.subTitleStyle,
                 ),
               ),
