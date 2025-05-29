@@ -13,16 +13,18 @@ import '../../../widget/space/space.dart';
 import '../../activity/user_screens/request/course_pay/pay_screen.dart';
 
 class RequestSubjectCard extends StatelessWidget {
-  const RequestSubjectCard(
-      {super.key,
-      required this.lessonTitle,
-      required this.lessonId,
-      required this.id,
-      required this.name,
-      required this.price,
-      required this.onlineCheck,
-      required this.acceptanceCheck,
-      required this.onTap});
+  const RequestSubjectCard({
+    super.key,
+    required this.lessonTitle,
+    required this.lessonId,
+    required this.id,
+    required this.name,
+    required this.price,
+    required this.onlineCheck,
+    required this.acceptanceCheck,
+    required this.onTap,
+  });
+
   final String lessonTitle;
   final int id, lessonId;
   final String name;
@@ -30,161 +32,385 @@ class RequestSubjectCard extends StatelessWidget {
   final String onlineCheck;
   final String acceptanceCheck;
   final void Function() onTap;
+
   @override
   Widget build(BuildContext context) {
-    return SidePadding(
-      sidePadding: 15,
-      child: InkWell(
-        onTap: () => Get.to(() => PayScreen(
-              type: "lesson",
-              id: lessonId,
-              isRequest: true,
-              requestId: id,
-            )),
-        child: Container(
-          padding: const EdgeInsets.all(5),
-          width: screenWidth,
-          // height: 110.h,
-          decoration: BoxDecoration(
-            color: white,
-            borderRadius: BorderRadius.circular(5.r),
-            border: Border.all(
-              color: textfieldColor,
-            ),
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
           ),
-          child: Column(
-            children: [
-              SidePadding(
-                sidePadding: 5,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+        ],
+        border: Border.all(
+          color: Colors.grey.withOpacity(0.12),
+          width: 1,
+        ),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => Get.to(() => PayScreen(
+            type: "lesson",
+            id: lessonId,
+            isRequest: true,
+            requestId: id,
+          )),
+          borderRadius: BorderRadius.circular(16.r),
+          child: Padding(
+            padding: EdgeInsets.all(16.w),
+            child: Column(
+              children: [
+                // Main content row
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Stack(
-                          children: [
-                            SizedBox(
-                              height: 75.h,
-                              child: Container(
-                                width: 70.w,
-                                height: 70.h,
-                                decoration: BoxDecoration(
-                                    // color: white,
-                                    gradient: blueGradient,
-                                    shape: BoxShape.circle),
-                                child: Center(
-                                  child: Container(
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    width: 60.w,
-                                    height: 60.h,
-                                    decoration: const BoxDecoration(
-                                        color: white, shape: BoxShape.circle),
-                                    child: const Logo(
-                                      logoHeight: 60,
-                                      logoWidth: 60,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              top: 50.h,
-                              right: 5.w,
-                              child: Container(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                width: 55.w,
-                                height: 25.h,
-                                decoration: BoxDecoration(
-                                    color: black.withOpacity(0.6),
-                                    borderRadius: BorderRadius.circular(5.r)),
-                                child: Center(
-                                    child: Text(tr("online"),
-                                        style: TextStyles.errorStyle
-                                            .copyWith(color: white))),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Space(
-                          boxHeight: 5,
-                        ),
-                        Text("#$id",
-                            style: TextStyles.errorStyle
-                                .copyWith(color: textfieldColor)),
-                      ],
-                    ),
-                    const Space(
-                      boxWidth: 10,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // SizedBox(
-                        // width: screenWidth * 0.3,
-                        // child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        // children: [
-                        SizedBox(
-                          width: screenWidth * 0.5,
-                          child: Text(lessonTitle,
-                              softWrap: true,
-                              maxLines: 2,
-                              style: TextStyles.appBarStyle.copyWith(
-                                  color: blackColor,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                        // Container(
-                        //   padding: const EdgeInsets.symmetric(
-                        //       horizontal: 5, vertical: 3),
-                        //   decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(30),
-                        //       border: Border.all(color: Colors.black)),
-                        //   child: Text(onlineCheck),
-                        // ),
-                        // ],
-                        // ),
-                        // ),
-                        SizedBox(
-                          width: screenWidth / 2,
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                profile,
-                                height: 15.h,
-                                fit: BoxFit.contain,
-                                color: textfieldColor,
-                              ),
-                              Text(name, style: TextStyles.hintStyle),
-                              // const Spacer(),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: screenWidth / 2,
-                          child: Row(
-                            children: [
-                              Image.asset(money,
-                                  height: 15.h, fit: BoxFit.contain),
-                              Text("$price ${tr("sar")}",
-                                  style: TextStyles.hintStyle),
-                              const Spacer(),
-                              Text(acceptanceCheck,
-                                  style: TextStyles.hintStyle
-                                      .copyWith(color: blackColor)),
-                            ],
-                          ),
-                        ),
-                      ],
+                    // Profile section with enhanced design
+                    _buildProfileSection(),
+                    Space(boxWidth: 16.w),
+                    // Content section
+                    Expanded(
+                      child: _buildContentSection(),
                     ),
                   ],
                 ),
-              ),
-            ],
+                Space(boxHeight: 12.h),
+                // Bottom section with status and action
+                _buildBottomSection(),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildProfileSection() {
+    return Column(
+      children: [
+        // Enhanced profile avatar
+        Container(
+          width: 80.w,
+          height: 80.h,
+          decoration: BoxDecoration(
+            gradient: blueGradient,
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: mainColor.withOpacity(0.3),
+                blurRadius: 8,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Container(
+            margin: EdgeInsets.all(4.w),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+            ),
+            child: const Logo(
+              logoHeight: 72,
+              logoWidth: 72,
+            ),
+          ),
+        ),
+        Space(boxHeight: 8.h),
+        // Request ID chip
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+          decoration: BoxDecoration(
+            color: mainColor.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12.r),
+            border: Border.all(
+              color: mainColor.withOpacity(0.3),
+              width: 1,
+            ),
+          ),
+          child: Text(
+            "#$id",
+            style: TextStyles.contentStyle.copyWith(
+              color: mainColor,
+              fontWeight: FontWeight.w600,
+              fontSize: 11.sp,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildContentSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Lesson title with enhanced typography
+        Text(
+          lessonTitle,
+          style: TextStyles.appBarStyle.copyWith(
+            color: blackColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 16.sp,
+            height: 1.3,
+          ),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        Space(boxHeight: 8.h),
+
+        // Provider info with icon
+        Row(
+          children: [
+            Container(
+              padding: EdgeInsets.all(4.w),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(6.r),
+              ),
+              child: Icon(
+                Icons.person_outline,
+                size: 14.sp,
+                color: textfieldColor,
+              ),
+            ),
+            Space(boxWidth: 8.w),
+            Expanded(
+              child: Text(
+                name,
+                style: TextStyles.hintStyle.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey[700],
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
+        Space(boxHeight: 6.h),
+
+        // Price info with enhanced design
+        Row(
+          children: [
+            Container(
+              padding: EdgeInsets.all(4.w),
+              decoration: BoxDecoration(
+                color: Colors.green.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(6.r),
+              ),
+              child: Icon(
+                Icons.attach_money,
+                size: 14.sp,
+                color: Colors.green[700],
+              ),
+            ),
+            Space(boxWidth: 8.w),
+            Text(
+              "$price ${tr("sar")}",
+              style: TextStyles.hintStyle.copyWith(
+                fontWeight: FontWeight.w600,
+                color: Colors.green[700],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBottomSection() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 8.h),
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: Colors.grey.withOpacity(0.15),
+            width: 1,
+          ),
+        ),
+      ),
+      child: Row(
+        children: [
+          // Online badge
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+            decoration: BoxDecoration(
+              color: Colors.blue.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(20.r),
+              border: Border.all(
+                color: Colors.blue.withOpacity(0.3),
+                width: 1,
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.wifi,
+                  size: 12.sp,
+                  color: Colors.blue[700],
+                ),
+                Space(boxWidth: 4.w),
+                Text(
+                  tr("online"),
+                  style: TextStyles.contentStyle.copyWith(
+                    color: Colors.blue[700],
+                    fontSize: 11.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Spacer(),
+
+          // Status badge with dynamic styling
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+            decoration: BoxDecoration(
+              color: _getStatusColor().withOpacity(0.1),
+              borderRadius: BorderRadius.circular(20.r),
+              border: Border.all(
+                color: _getStatusColor().withOpacity(0.3),
+                width: 1,
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  _getStatusIcon(),
+                  size: 12.sp,
+                  color: _getStatusColor(),
+                ),
+                Space(boxWidth: 4.w),
+                Text(
+                  acceptanceCheck,
+                  style: TextStyles.contentStyle.copyWith(
+                    color: _getStatusColor(),
+                    fontSize: 11.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Space(boxWidth: 8.w),
+
+          // Action button
+          Container(
+            height: 32.h,
+            child: ElevatedButton(
+              onPressed: () => Get.to(() => PayScreen(
+                type: "lesson",
+                id: lessonId,
+                isRequest: true,
+                requestId: id,
+              )),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: _getActionButtonColor(),
+                foregroundColor: Colors.white,
+                elevation: 2,
+                shadowColor: _getActionButtonColor().withOpacity(0.3),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.r),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    _getActionIcon(),
+                    size: 14.sp,
+                  ),
+                  Space(boxWidth: 4.w),
+                  Text(
+                    _getActionText(),
+                    style: TextStyles.contentStyle.copyWith(
+                      color: Colors.white,
+                      fontSize: 11.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Helper methods for status-based styling
+  Color _getStatusColor() {
+    switch (acceptanceCheck.toLowerCase()) {
+      case "pending":
+        return Colors.orange;
+      case "accepted":
+        return Colors.green;
+      case "rejected":
+        return Colors.red;
+      case "paid":
+        return Colors.blue;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  IconData _getStatusIcon() {
+    switch (acceptanceCheck.toLowerCase()) {
+      case "pending":
+        return Icons.schedule;
+      case "accepted":
+        return Icons.check_circle_outline;
+      case "rejected":
+        return Icons.cancel_outlined;
+      case "paid":
+        return Icons.payment;
+      default:
+        return Icons.info_outline;
+    }
+  }
+
+  Color _getActionButtonColor() {
+    switch (acceptanceCheck.toLowerCase()) {
+      case "accepted":
+        return Colors.green;
+      case "pending":
+        return mainColor;
+      default:
+        return Colors.grey[600]!;
+    }
+  }
+
+  IconData _getActionIcon() {
+    switch (acceptanceCheck.toLowerCase()) {
+      case "accepted":
+        return Icons.payment;
+      case "pending":
+        return Icons.visibility;
+      default:
+        return Icons.info;
+    }
+  }
+
+  String _getActionText() {
+    switch (acceptanceCheck.toLowerCase()) {
+      case "accepted":
+        return tr("pay_now");
+      case "pending":
+        return tr("view");
+      case "rejected":
+        return tr("details");
+      case "paid":
+        return tr("view");
+      default:
+        return tr("view");
+    }
   }
 }

@@ -37,7 +37,8 @@ class MyRequestsScreen extends StatelessWidget {
                       Expanded(
                         child: bloc.isSubject
                             ? RequestsSubjectView()
-                            : RequestsCourseView(),
+                        : Container()
+                        // : RequestsCourseView(),
                       ),
                     ],
                   ),
