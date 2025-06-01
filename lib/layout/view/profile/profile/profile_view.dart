@@ -3,10 +3,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:my_academy/bloc/auth/show_delete_and_payment/show_delete_and_paymnet_cubit.dart';
 
 import '../../../../../widget/error/page/error_page.dart';
 import '../../../../bloc/auth/provider/auth_provider_cubit.dart';
-import '../../../../bloc/auth/show_delete_and_payment./show_delete_and_paymnet_cubit.dart';
 import '../../../../bloc/profile/provider/provider_cubit.dart';
 import '../../../../bloc/profile/user/user_cubit.dart';
 import '../../../../repository/provider/auth_provider/auth_provider_repository.dart';

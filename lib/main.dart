@@ -12,8 +12,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart' as trans;
 import 'package:my_academy/bloc/auth/provider/auth_provider_cubit.dart';
-import 'package:my_academy/bloc/auth/show_delete_and_payment./injection.dart'
-    as di;
+// import 'package:my_academy/bloc/auth/show_delete_and_payment./injection.dart'
+//     as di;
+import 'package:my_academy/bloc/auth/show_delete_and_payment/injection.dart';
+import 'package:my_academy/bloc/auth/show_delete_and_payment/injection.dart' as di;
 import 'package:my_academy/bloc/bookmark/bookmark_cubit.dart';
 import 'package:my_academy/bloc/lessons/lessons_cubit.dart';
 import 'package:my_academy/bloc/pay/pay_cubit.dart';
@@ -29,8 +31,8 @@ import 'package:my_academy/repository/user/subscriptions/subscriptions_repositor
 import 'package:my_academy/res/value/color/color.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-import 'bloc/auth/show_delete_and_payment./injection.dart';
-import 'bloc/auth/show_delete_and_payment./show_delete_and_paymnet_cubit.dart';
+// import 'bloc/auth/show_delete_and_payment./show_delete_and_paymnet_cubit.dart';
+import 'bloc/auth/show_delete_and_payment/show_delete_and_paymnet_cubit.dart';
 import 'bloc/bottom_bar/bottom_bar_cubit.dart';
 import 'bloc/cities/cities_cubit.dart';
 import 'bloc/content/content_cubit.dart';

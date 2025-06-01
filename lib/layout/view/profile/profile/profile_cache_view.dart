@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:my_academy/bloc/auth/show_delete_and_payment./show_delete_and_paymnet_cubit.dart';
+import 'package:my_academy/bloc/auth/show_delete_and_payment/show_delete_and_paymnet_cubit.dart';
 import 'package:my_academy/layout/activity/provider_screens/account_data/account_data_screen.dart';
 import 'package:my_academy/layout/activity/provider_screens/account_data/edit_account_information_screen.dart';
 
