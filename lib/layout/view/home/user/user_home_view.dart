@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_academy/widget/headers/home/home_header.dart';
 
@@ -22,7 +21,6 @@ import '../../../../widget/error/page/error_page.dart';
 import '../../../../widget/image_handler/image_from_network/network_image.dart';
 import '../../../../widget/master_list/custom_list.dart';
 import '../../../../widget/search_home_widget/search_home_widget.dart';
-import '../../../../widget/side_padding/side_padding.dart';
 import '../../../../widget/space/space.dart';
 import '../../../activity/user_screens/course/course_screen.dart';
 import '../../../activity/user_screens/grade/grade_screen.dart';
@@ -233,11 +231,11 @@ class _UserHomeViewState extends State<UserHomeView> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   // Top Image
-                                  AspectRatio(
-                                    aspectRatio: 16 / 6,
+                                  Expanded(
                                     child: CachedImage(
                                       imageUrl: offer.image!,
-                                      fit: BoxFit.scaleDown,
+                                      fit: BoxFit.fill,
+                                      width: screenWidth,
                                     ),
                                   ),
 
@@ -245,12 +243,14 @@ class _UserHomeViewState extends State<UserHomeView> {
 
                                   // Offer Title
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0),
                                     child: Text(
                                       offer.name!,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyles.textView16SemiBold.copyWith(
+                                      style: TextStyles.textView16SemiBold
+                                          .copyWith(
                                         color: cvColor,
                                       ),
                                     ),
@@ -260,21 +260,26 @@ class _UserHomeViewState extends State<UserHomeView> {
 
                                   // Offer Description
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0),
                                     child: Text(
                                       offer.content!,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyles.hintStyle.copyWith(fontSize: 13.sp),
+                                      style: TextStyles.hintStyle
+                                          .copyWith(fontSize: 13.sp),
                                     ),
                                   ),
 
-                                  const Spacer(),
+                                  // const Spacer(),
 
                                   // CTA Button (Optional)
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 16.0, right: 16.0, bottom: 12.0, top: 8),
+                                        left: 16.0,
+                                        right: 16.0,
+                                        bottom: 12.0,
+                                        top: 8),
                                     child: Align(
                                       alignment: Alignment.centerRight,
                                       child: Text(
@@ -415,7 +420,6 @@ class _UserHomeViewState extends State<UserHomeView> {
             ),
           ],
         ),
-
 
         const Space(
           boxHeight: 15,

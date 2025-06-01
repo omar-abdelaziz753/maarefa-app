@@ -4,29 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_academy/bloc/all_requests/all_requests_cubit.dart';
 import 'package:my_academy/repository/user/all_requests/all_requests_repository.dart';
-import '../../../model/user/lesson_requests/lesson_requests_model.dart';
-import '../../../res/drawable/image/images.dart';
-import '../../../res/value/color/color.dart';
-import '../../../res/value/dimenssion/dimenssions.dart';
-import '../../../widget/error/page/error_page.dart';
-import '../../../widget/master_list/custom_list.dart';
-import '../../../widget/space/space.dart';
-import '../../activity/static/empty_screens/empty_screens.dart';
-import '../../card_view/my_requests/request_subject_card.dart';
-import 'request_subject_cache_view.dart';
 
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_academy/bloc/all_requests/all_requests_cubit.dart';
-import 'package:my_academy/repository/user/all_requests/all_requests_repository.dart';
 import '../../../model/user/lesson_requests/lesson_requests_model.dart';
 import '../../../res/drawable/image/images.dart';
 import '../../../res/value/color/color.dart';
 import '../../../res/value/dimenssion/dimenssions.dart';
 import '../../../widget/error/page/error_page.dart';
-import '../../../widget/master_list/custom_list.dart';
 import '../../../widget/space/space.dart';
 import '../../activity/static/empty_screens/empty_screens.dart';
 import '../../card_view/my_requests/request_subject_card.dart';
@@ -39,7 +22,7 @@ class RequestsSubjectView extends StatelessWidget {
   Widget build(final BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) =>
-      AllRequestsCubit(AllRequestsRepository())..getLessonRequests(),
+          AllRequestsCubit(AllRequestsRepository())..getLessonRequests(),
       child: BlocConsumer<AllRequestsCubit, AllRequestsState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -62,9 +45,9 @@ class RequestsSubjectView extends StatelessWidget {
 }
 
 Widget requestsLessonView(
-    BuildContext context,
-    List<RequestModel> data,
-    ) {
+  BuildContext context,
+  List<RequestModel> data,
+) {
   if (data.isEmpty) {
     return Container(
       width: screenWidth,
@@ -153,7 +136,7 @@ Widget requestsLessonView(
                 padding: EdgeInsets.only(top: 8.h, bottom: 20.h),
                 sliver: SliverList(
                   delegate: SliverChildBuilderDelegate(
-                        (context, index) {
+                    (context, index) {
                       return RequestSubjectCard(
                         lessonId: data[index].id!,
                         price: data[index].lesson!.hourPrice!,
@@ -239,10 +222,17 @@ Widget _buildHeaderSection(List<RequestModel> data) {
         // Status statistics
         Row(
           children: [
-            Expanded(child: _buildStatusStat(tr("pending"), pendingCount, Colors.orange)),
-            Expanded(child: _buildStatusStat(tr("accepted"), acceptedCount, Colors.green)),
-            Expanded(child: _buildStatusStat(tr("rejected"), rejectedCount, Colors.red)),
-            Expanded(child: _buildStatusStat(tr("paid"), paidCount, Colors.blue)),
+            Expanded(
+                child: _buildStatusStat(
+                    tr("pending"), pendingCount, Colors.orange)),
+            Expanded(
+                child: _buildStatusStat(
+                    tr("accepted"), acceptedCount, Colors.green)),
+            Expanded(
+                child: _buildStatusStat(
+                    tr("rejected"), rejectedCount, Colors.red)),
+            Expanded(
+                child: _buildStatusStat(tr("paid"), paidCount, Colors.blue)),
           ],
         ),
       ],

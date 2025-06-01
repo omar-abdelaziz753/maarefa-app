@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_academy/widget/master_list/custom_list.dart';
-import 'package:my_academy/widget/space/space.dart';
 
 import '../../../bloc/content/content_cubit.dart';
 import '../../../model/common/lessons/lesson_model.dart';
@@ -68,28 +67,19 @@ class ProviderLessonView extends StatelessWidget {
             listener: (context, state) {},
             builder: (context, state) {
               final bloc = ContentCubit.get(context);
-              return ListView(
-                children: [
-                  const Space(
-                    boxHeight: 35,
+              return CustomList(
+                listHeight: 1000000000000000,
+                listWidth: screenWidth,
+                scroll: const NeverScrollableScrollPhysics(),
+                axis: Axis.vertical,
+                count: bloc.lessonModel.length,
+                child: (context, index) => Padding(
+                  padding:
+                      EdgeInsets.only(left: 20.w, right: 20.w, bottom: 15.h),
+                  child: ProviderSubjectCard(
+                    data: bloc.lessonModel[index],
                   ),
-                  CustomList(
-                    listHeight: 1000000000000000,
-                    listWidth: screenWidth,
-                    scroll: const NeverScrollableScrollPhysics(),
-                    axis: Axis.vertical,
-                    count: bloc.lessonModel.length,
-                    child: (context, index) => Padding(
-                      padding: EdgeInsets.only(bottom: 15.h),
-                      child: ProviderSubjectCard(
-                        data: bloc.lessonModel[index],
-                      ),
-                    ),
-                  ),
-                  const Space(
-                    boxHeight: 75,
-                  ),
-                ],
+                ),
               );
             }));
   }

@@ -719,4 +719,5 @@ class ContentCubit extends Cubit<ContentState> {
       emit(CoursesLoadedState(courseModel));
     });
   }
+   
 }

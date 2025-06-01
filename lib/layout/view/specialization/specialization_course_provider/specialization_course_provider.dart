@@ -1,9 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_academy/model/common/specializations/lessions_model.dart';
 
 import '../../../../bloc/content/content_cubit.dart';
 import '../../../../bloc/specialzation/specialization_cubit.dart';
@@ -42,6 +43,7 @@ class SpecializationCourseView extends StatelessWidget {
                 return SpecializationView(
                   specialization: specialization,
                   courseDetailsModel: courseDetailsMode,
+                  lessonData: (state).lessonData,
                 );
               } else if (state is SpecializationErrorState) {
                 return const ErrorPage();
@@ -57,10 +59,11 @@ class SpecializationView extends StatefulWidget {
     super.key,
     this.courseDetailsModel,
     required this.specialization,
+    required this.lessonData,
   });
   final CourseDetailsModel? courseDetailsModel;
   final List<Specialization> specialization;
-
+  final List<LessonData> lessonData;
   @override
   State<SpecializationView> createState() => _SpecializationViewState();
 }
@@ -90,6 +93,18 @@ class _SpecializationViewState extends State<SpecializationView> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.lessonData);
+    final minPrice = int.tryParse(widget.lessonData
+                .firstWhere((e) => e.key == "individual_price_min")
+                .value ??
+            "0") ??
+        0;
+    final maxPrice = int.tryParse(widget.lessonData
+                .firstWhere((e) => e.key == "individual_price_max")
+                .value ??
+            "0") ??
+        0;
+
     return BlocConsumer<ContentCubit, ContentState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -141,8 +156,6 @@ class _SpecializationViewState extends State<SpecializationView> {
                       readOnly: true,
                       controller: bloc.location,
                       hintText: tr("course_location"),
-                      // errorText: bloc.validators[1],
-                      // onChanged: (val) => bloc.validate(val, 1),
                     )
                   : const SizedBox(),
               Space(
@@ -213,24 +226,22 @@ class _SpecializationViewState extends State<SpecializationView> {
               const Space(
                 boxHeight: 20,
               ),
-              MasterTextField(
-                controller: bloc.price,
-                hintText: tr("course_price"),
-                keyboardType: TextInputType.number,
-                errorText: bloc.validators[3],
-                onChanged: (val) => bloc.validate(val, 3),
-                suffixIcon: "sar",
-              ),
-              const Space(
-                boxHeight: 15,
-              ),
               CourseType(
                 title: tr("course_system"),
                 firstChoice: tr("individual"),
                 secondChoice: tr("group"),
                 groupValue: bloc.systemValue,
-                onChangedFirst: (v) => bloc.setCourseSystem(1),
-                onChangedSecond: (v) => bloc.setCourseSystem(2),
+                onChangedFirst: (v) {
+                  bloc.price.clear();
+                  bloc.people.clear();
+
+                  return bloc.setCourseSystem(1);
+                },
+                onChangedSecond: (v) {
+                  bloc.price.clear();
+                  bloc.people.clear();
+                  return bloc.setCourseSystem(2);
+                },
               ),
               bloc.systemValue == 1
                   ? const SizedBox()
@@ -244,11 +255,73 @@ class _SpecializationViewState extends State<SpecializationView> {
                           hintText: tr("max_people"),
                           keyboardType: TextInputType.number,
                           errorText: bloc.validators[4],
-                          onChanged: (val) => bloc.validate(val, 4),
                           suffixIcon: "people",
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            LengthLimitingTextInputFormatter(1),
+                            TextInputFormatter.withFunction(
+                              (oldValue, newValue) {
+                                final text = newValue.text;
+                                if (text.isEmpty) return newValue;
+                                final num = int.tryParse(text);
+                                if (num != null && num >= 2 && num <= 5) {
+                                  return newValue;
+                                }
+                                return oldValue;
+                              },
+                            ),
+                          ],
+                          onChanged: (val) {
+                            bloc.validate(val, 4);
+
+                            final count = int.tryParse(val);
+                            if (count != null && count >= 2 && count <= 5) {
+                              final key = "group_price_$count";
+                              final match = widget.lessonData.firstWhere(
+                                (element) => element.key == key,
+                                orElse: () => LessonData(key: '', value: ''),
+                              );
+
+                              if (match.key!.isNotEmpty &&
+                                  match.value != null) {
+                                bloc.price.text = match.value!;
+                              }
+                            } else {
+                              bloc.price.clear();
+                            }
+                          },
                         ),
                       ],
                     ),
+              const Space(
+                boxHeight: 15,
+              ),
+              MasterTextField(
+                controller: bloc.price,
+                hintText: bloc.systemValue == 1
+                    ? "${tr("course_price_between")} $minPrice - $maxPrice "
+                    : tr("course_price"),
+                keyboardType: TextInputType.number,
+                errorText: bloc.validators[3],
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(maxPrice.toString().length),
+                ],
+                onChanged: (val) {
+                  final inputVal = int.tryParse(val) ?? 0;
+                  if (val.isEmpty) {
+                    bloc.validators[3] = null;
+                  } else if (inputVal < minPrice || inputVal > maxPrice) {
+                    bloc.validators[3] =
+                        "${tr("course_price_between")} $minPrice - $maxPrice ${tr("sar")}";
+                  } else {
+                    bloc.validators[3] = null;
+                  }
+                  setState(() {});
+                },
+                suffixIcon: "sar",
+                readOnly: bloc.systemValue != 1,
+              ),
               const Space(
                 boxHeight: 20,
               ),

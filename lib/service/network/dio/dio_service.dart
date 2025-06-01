@@ -29,7 +29,14 @@ class DioService {
         sendTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30));
     _dio = dio.Dio(options);
-    _dio?.interceptors.add(PrettyDioLogger());
+    _dio?.interceptors.add(PrettyDioLogger(
+      request: true,
+      requestHeader: true,
+      requestBody: true,
+      responseBody: true,
+      responseHeader: true,
+      error: true,
+    ));
     return _dioService;
   }
 

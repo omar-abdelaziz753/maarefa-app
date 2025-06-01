@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../bloc/course_subject/course_subject_cubit.dart';
 import '../../../../repository/user/courses/courses_repository.dart';
 import '../../../../widget/headers/course_subject/course_subject_header.dart';
-import '../../../view/all_user_requests/requests_course_view.dart';
 import '../../../view/all_user_requests/requests_subject_view.dart';
 import '../../../view/connectivity/connectivity_view.dart';
 
@@ -33,13 +33,15 @@ class MyRequestsScreen extends StatelessWidget {
                         subjectTap: () => bloc.chooseCourseSubject(true),
                         isSubject: bloc.isSubject,
                       ),
-                      const SizedBox(height: 16,),
-                      Expanded(
-                        child: bloc.isSubject
-                            ? RequestsSubjectView()
-                        : Container()
-                        // : RequestsCourseView(),
+                      const SizedBox(
+                        height: 16,
                       ),
+                      Expanded(
+                          child: bloc.isSubject
+                              ? RequestsSubjectView()
+                              : Container()
+                          // : RequestsCourseView(),
+                          ),
                     ],
                   ),
                 );

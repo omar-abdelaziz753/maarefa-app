@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:my_academy/model/common/specializations/lessions_model.dart';
 
 import '../../../layout/activity/provider_screens/main/main_screen.dart';
 import '../../../model/common/specializations/specializations_db_response.dart';
@@ -51,6 +52,19 @@ class SpecializationsRepository {
               }));
     } catch (e) {
       return debugPrint(e.toString());
+    }
+  }
+
+  getLessonsPrices() async {
+    try {
+      return await DioService()
+          .get('/lesson')
+          .then((value) => value.fold((l) => showToast(l), (r) {
+                LessonModel specializations = LessonModel.fromJson(r);
+                return specializations;
+              }));
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 }

@@ -3,15 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../res/value/color/color.dart';
-import '../../../res/value/dimenssion/dimenssions.dart';
 import '../../../res/value/style/textstyles.dart';
-import '../../../widget/buttons/master/master_button.dart';
-import '../../../widget/side_padding/side_padding.dart';
-
-
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class RightHomeCard extends StatefulWidget {
   final String title, subTitle, buttonText, image;
@@ -118,7 +110,8 @@ class _RightHomeCardState extends State<RightHomeCard>
     final secondaryColor = widget.secondaryColor ?? cvColor;
 
     return AnimatedBuilder(
-      animation: Listenable.merge([_scaleAnimation, _slideAnimation, _fadeAnimation]),
+      animation:
+          Listenable.merge([_scaleAnimation, _slideAnimation, _fadeAnimation]),
       builder: (context, child) {
         return SlideTransition(
           position: _slideAnimation,
@@ -145,8 +138,12 @@ class _RightHomeCardState extends State<RightHomeCard>
                       // height: 200.h,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          begin: isRTL ? Alignment.centerLeft : Alignment.centerRight,
-                          end: isRTL ? Alignment.centerRight : Alignment.centerLeft,
+                          begin: isRTL
+                              ? Alignment.centerLeft
+                              : Alignment.centerRight,
+                          end: isRTL
+                              ? Alignment.centerRight
+                              : Alignment.centerLeft,
                           colors: [
                             primaryColor,
                             primaryColor.withOpacity(0.85),
@@ -156,8 +153,18 @@ class _RightHomeCardState extends State<RightHomeCard>
                         boxShadow: [
                           BoxShadow(
                             color: primaryColor.withOpacity(0.3),
-                            blurRadius: _isPressed ? 8 : _isHovered ? 20 : 15,
-                            offset: Offset(0, _isPressed ? 2 : _isHovered ? 8 : 5),
+                            blurRadius: _isPressed
+                                ? 8
+                                : _isHovered
+                                    ? 20
+                                    : 15,
+                            offset: Offset(
+                                0,
+                                _isPressed
+                                    ? 2
+                                    : _isHovered
+                                        ? 8
+                                        : 5),
                             spreadRadius: _isPressed ? -2 : 0,
                           ),
                           BoxShadow(
@@ -180,7 +187,9 @@ class _RightHomeCardState extends State<RightHomeCard>
                               child: Container(
                                 decoration: BoxDecoration(
                                   gradient: RadialGradient(
-                                    center: isRTL ? Alignment.centerRight : Alignment.centerLeft,
+                                    center: isRTL
+                                        ? Alignment.centerRight
+                                        : Alignment.centerLeft,
                                     radius: 1.2,
                                     colors: [
                                       Colors.white.withOpacity(0.1),
@@ -203,7 +212,8 @@ class _RightHomeCardState extends State<RightHomeCard>
                                         right: isRTL ? 0 : 20.w,
                                         left: isRTL ? 20.w : 0,
                                       ),
-                                      child: _buildContentSection(secondaryColor),
+                                      child:
+                                          _buildContentSection(secondaryColor),
                                     ),
                                   ),
 
@@ -308,7 +318,7 @@ class _RightHomeCardState extends State<RightHomeCard>
                 opacity: value,
                 child: Text(
                   widget.title,
-                  style: TextStyles.titleStyle?.copyWith(
+                  style: TextStyles.titleStyle.copyWith(
                     color: Colors.white,
                     fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
@@ -342,7 +352,7 @@ class _RightHomeCardState extends State<RightHomeCard>
                 opacity: value,
                 child: Text(
                   widget.subTitle,
-                  style: TextStyles.hintStyle?.copyWith(
+                  style: TextStyles.hintStyle.copyWith(
                     color: Colors.white.withOpacity(0.9),
                     fontSize: 13.sp,
                     height: 1.4,
@@ -399,7 +409,7 @@ class _RightHomeCardState extends State<RightHomeCard>
           children: [
             Text(
               widget.buttonText,
-              style: TextStyles.errorStyle?.copyWith(
+              style: TextStyles.errorStyle.copyWith(
                 color: secondaryColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 14.sp,
@@ -532,7 +542,8 @@ class _LeftHomeCardState extends State<LeftHomeCard>
     final secondaryColor = widget.secondaryColor ?? cvColor;
 
     return AnimatedBuilder(
-      animation: Listenable.merge([_scaleAnimation, _slideAnimation, _fadeAnimation]),
+      animation:
+          Listenable.merge([_scaleAnimation, _slideAnimation, _fadeAnimation]),
       builder: (context, child) {
         return SlideTransition(
           position: _slideAnimation,
@@ -559,8 +570,12 @@ class _LeftHomeCardState extends State<LeftHomeCard>
                       // height: 200.h,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          begin: isRTL ? Alignment.centerRight : Alignment.centerLeft,
-                          end: isRTL ? Alignment.centerLeft : Alignment.centerRight,
+                          begin: isRTL
+                              ? Alignment.centerRight
+                              : Alignment.centerLeft,
+                          end: isRTL
+                              ? Alignment.centerLeft
+                              : Alignment.centerRight,
                           colors: [
                             primaryColor,
                             primaryColor.withOpacity(0.85),
@@ -570,8 +585,18 @@ class _LeftHomeCardState extends State<LeftHomeCard>
                         boxShadow: [
                           BoxShadow(
                             color: primaryColor.withOpacity(0.3),
-                            blurRadius: _isPressed ? 8 : _isHovered ? 20 : 15,
-                            offset: Offset(0, _isPressed ? 2 : _isHovered ? 8 : 5),
+                            blurRadius: _isPressed
+                                ? 8
+                                : _isHovered
+                                    ? 20
+                                    : 15,
+                            offset: Offset(
+                                0,
+                                _isPressed
+                                    ? 2
+                                    : _isHovered
+                                        ? 8
+                                        : 5),
                             spreadRadius: _isPressed ? -2 : 0,
                           ),
                           BoxShadow(
@@ -594,7 +619,9 @@ class _LeftHomeCardState extends State<LeftHomeCard>
                               child: Container(
                                 decoration: BoxDecoration(
                                   gradient: RadialGradient(
-                                    center: isRTL ? Alignment.centerLeft : Alignment.centerRight,
+                                    center: isRTL
+                                        ? Alignment.centerLeft
+                                        : Alignment.centerRight,
                                     radius: 1.2,
                                     colors: [
                                       Colors.white.withOpacity(0.1),
@@ -619,7 +646,8 @@ class _LeftHomeCardState extends State<LeftHomeCard>
                                       padding: EdgeInsets.symmetric(
                                         horizontal: isRTL ? 0 : 20.w,
                                       ),
-                                      child: _buildContentSection(secondaryColor),
+                                      child:
+                                          _buildContentSection(secondaryColor),
                                     ),
                                   ),
 
@@ -724,7 +752,7 @@ class _LeftHomeCardState extends State<LeftHomeCard>
                 opacity: value,
                 child: Text(
                   widget.title,
-                  style: TextStyles.titleStyle?.copyWith(
+                  style: TextStyles.titleStyle.copyWith(
                     color: Colors.white,
                     fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
@@ -758,7 +786,7 @@ class _LeftHomeCardState extends State<LeftHomeCard>
                 opacity: value,
                 child: Text(
                   widget.subTitle,
-                  style: TextStyles.hintStyle?.copyWith(
+                  style: TextStyles.hintStyle.copyWith(
                     color: Colors.white.withOpacity(0.9),
                     fontSize: 13.sp,
                     height: 1.4,
@@ -815,7 +843,7 @@ class _LeftHomeCardState extends State<LeftHomeCard>
           children: [
             Text(
               widget.buttonText,
-              style: TextStyles.errorStyle?.copyWith(
+              style: TextStyles.errorStyle.copyWith(
                 color: secondaryColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 14.sp,

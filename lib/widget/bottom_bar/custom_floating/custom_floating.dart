@@ -84,7 +84,7 @@ class CustomFloatingNavbarState extends State<CustomFloatingNavbar> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
-            padding: widget.padding,
+            // padding: widget.padding,
             decoration: BoxDecoration(
               // border: Border.all(color: primaryText),
               borderRadius: BorderRadius.only(
@@ -145,10 +145,10 @@ ItemBuilder _defaultItemBuilder({
               Text(
                 item.title!,
                 style: textStyle?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12.sp,
-                  color: color,
-                ) ??
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12.sp,
+                      color: color,
+                    ) ??
                     TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w600,

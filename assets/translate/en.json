@@ -374,5 +374,7 @@
     "failGenratingLiveJoinLink": "Failed genrating your link",
     "share": "Share",
     "copy": "Copy",
-    "savedToClipboard": "Saved to clipboard"
+    "savedToClipboard": "Saved to clipboard", 
+    "course_price_between": "Course price between",
+    "price_range_error": "Price must be between {0} and {1} SAR"
 }

@@ -2,13 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:my_academy/res/drawable/icon/icons.dart';
 import 'package:my_academy/res/value/color/color.dart';
-import 'package:my_academy/res/value/dimenssion/dimenssions.dart';
 
 import '../../../res/value/style/textstyles.dart';
 import '../../../widget/logo/logo/logo.dart';
-import '../../../widget/side_padding/side_padding.dart';
 import '../../../widget/space/space.dart';
 import '../../activity/user_screens/request/course_pay/pay_screen.dart';
 
@@ -56,11 +53,11 @@ class RequestSubjectCard extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () => Get.to(() => PayScreen(
-            type: "lesson",
-            id: lessonId,
-            isRequest: true,
-            requestId: id,
-          )),
+                type: "lesson",
+                id: lessonId,
+                isRequest: true,
+                requestId: id,
+              )),
           borderRadius: BorderRadius.circular(16.r),
           child: Padding(
             padding: EdgeInsets.all(16.w),
@@ -302,15 +299,15 @@ class RequestSubjectCard extends StatelessWidget {
           Space(boxWidth: 8.w),
 
           // Action button
-          Container(
+          SizedBox(
             height: 32.h,
             child: ElevatedButton(
               onPressed: () => Get.to(() => PayScreen(
-                type: "lesson",
-                id: lessonId,
-                isRequest: true,
-                requestId: id,
-              )),
+                    type: "lesson",
+                    id: lessonId,
+                    isRequest: true,
+                    requestId: id,
+                  )),
               style: ElevatedButton.styleFrom(
                 backgroundColor: _getActionButtonColor(),
                 foregroundColor: Colors.white,

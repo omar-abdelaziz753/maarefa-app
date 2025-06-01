@@ -91,8 +91,11 @@ class SpecializationCubit extends Cubit<SpecializationState> {
   }
 
   getSpecializations() {
-    specializationsRepository.getSpecializations().then((value) {
-      emit(SpecializationLoadedState(data: value.specialization));
+    specializationsRepository.getSpecializations().then((value) async {
+      await specializationsRepository.getLessonsPrices().then((value2) {
+        emit(SpecializationLoadedState(
+            data: value.specialization, lessonData: value2.data));
+      });
     });
   }
 

@@ -1,3 +1,5 @@
+import 'package:my_academy/model/common/specializations/lessions_model.dart';
+
 import '../../model/common/courses/course_details/course_details_model.dart';
 import '../../model/common/subjects/subjects_model.dart';
 
@@ -9,8 +11,9 @@ class SpecializationLoadingState extends SpecializationState {}
 
 class SpecializationLoadedState extends SpecializationState {
   List<Specialization> data;
+  List<LessonData> lessonData;
 
-  SpecializationLoadedState({required this.data});
+  SpecializationLoadedState({required this.data, required this.lessonData});
 }
 
 class SpecializationErrorState extends SpecializationState {}
@@ -34,3 +37,12 @@ class SubjectLoadedState extends SpecializationState {
 }
 
 class SubjectErrorState extends SpecializationState {}
+
+class LessonLoadedState extends SpecializationState {
+  List<LessonData> data;
+
+  LessonLoadedState({required this.data});
+}
+
+class LessonErrorState extends SpecializationState {}
+class ContentUpdatedState extends SpecializationState {}

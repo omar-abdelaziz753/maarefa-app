@@ -374,5 +374,7 @@
     "copy": "نسخ",
     "savedToClipboard": "تم نسخ الرابط",
     "priceWithoutTax": "السعر بدون ضريبة",
-    "tax": "قيمة الضريبة"
+    "tax": "قيمة الضريبة" ,
+    "course_price_between": "سعر الدورة بين",
+    "price_range_error": "السعر يجب أن يكون بين {0} و {1} ر.س"
 }

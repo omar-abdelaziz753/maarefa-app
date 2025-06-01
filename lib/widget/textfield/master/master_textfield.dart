@@ -24,6 +24,7 @@ class MasterTextField extends StatelessWidget {
   final TextStyle? hintStyle;
 
   final double? borderRadius;
+  final List<TextInputFormatter>? inputFormatters;
   final String? prefixIcon;
   final Color? prefixIconColor;
   final String? suffixIcon;
@@ -51,6 +52,7 @@ class MasterTextField extends StatelessWidget {
     required this.hintText,
     this.borderRadius,
     this.isPassword = false,
+    this.inputFormatters,
     this.isChange = false,
     this.readOnly = false,
     this.keyboardType,
@@ -80,6 +82,7 @@ class MasterTextField extends StatelessWidget {
           child: LimitedBox(
             maxHeight: fieldHeight == null ? 70.h : fieldHeight!.h,
             child: TextFormField(
+              inputFormatters: inputFormatters,
               controller: controller,
               onChanged: onChanged,
               onTap: onTap,
