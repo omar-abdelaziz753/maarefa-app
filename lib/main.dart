@@ -21,6 +21,7 @@ import 'package:my_academy/bloc/lessons/lessons_cubit.dart';
 import 'package:my_academy/bloc/pay/pay_cubit.dart';
 import 'package:my_academy/bloc/search_bloc/search_bloc.dart';
 import 'package:my_academy/layout/activity/splash/splash_screen.dart';
+import 'package:my_academy/layout/view/home/user/data/cubit/home_cubit.dart';
 import 'package:my_academy/repository/common/cities/cities_repository.dart';
 import 'package:my_academy/repository/common/nationalities/nationalities_repository.dart';
 import 'package:my_academy/repository/common/search/search_repository.dart';
@@ -179,7 +180,10 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
               create: (BuildContext context) =>
-                  NationsCubit(NationalitiesRepository()))
+                  NationsCubit(NationalitiesRepository())),
+          BlocProvider(
+              create: (BuildContext context) =>
+                  HomeCubit()..getAllSpecializations()),
         ],
         child: OverlaySupport(
           child: GetMaterialApp(
