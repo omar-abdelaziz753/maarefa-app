@@ -75,7 +75,7 @@ class RoleScreen extends StatelessWidget {
                               providerTap: () => bloc.changeRole(false),
                               isUser: bloc.isUser,
                             ),
-                            Space(boxHeight: 80.h),
+                            Space(boxHeight: 60.h),
                             RoleButton(
                               onPressed: () async {
                                 bloc.saveRole(bloc.isUser);
@@ -116,6 +116,8 @@ class RoleBackgroundWidget extends StatelessWidget {
     );
   }
 }
+
+
 // class RoleScreen extends StatelessWidget {
 //   const RoleScreen({Key? key}) : super(key: key);
 
