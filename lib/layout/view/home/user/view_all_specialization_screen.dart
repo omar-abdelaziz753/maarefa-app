@@ -30,7 +30,7 @@ class _ViewAllSpecializationScreenState extends State<ViewAllSpecializationScree
   @override
   void initState() {
     super.initState();
-    context.read<HomeCubit>().getAllSpecializations();
+    context.read<Home2Cubit>().getAllSpecializations();
   }
 
   @override
@@ -50,7 +50,7 @@ class _ViewAllSpecializationScreenState extends State<ViewAllSpecializationScree
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: BlocBuilder<HomeCubit, HomeState>(
+      body: BlocBuilder<Home2Cubit, Home2State>(
         builder: (context, state) {
           // if (state is GetAllSpecializationsLoadingState) {
           //   return _buildLoadingState();
@@ -70,7 +70,7 @@ class _ViewAllSpecializationScreenState extends State<ViewAllSpecializationScree
               : state is GetAllSpecializationsErrorState
                   ? _buildErrorState(state.errorMessage)
                   : state is GetAllSpecializationsSuccessState
-                      ? _buildSpecializationsGrid(context.read<HomeCubit>().allSpecializations)
+                      ? _buildSpecializationsGrid(context.read<Home2Cubit>().allSpecializations)
                       : const Center(child: CircularProgressIndicator());
         },
       ),
@@ -122,7 +122,7 @@ class _ViewAllSpecializationScreenState extends State<ViewAllSpecializationScree
             ),
             SizedBox(height: 24.h),
             ElevatedButton(
-              onPressed: () => context.read<HomeCubit>().getAllSpecializations(),
+              onPressed: () => context.read<Home2Cubit>().getAllSpecializations(),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
                 padding: EdgeInsets.symmetric(vertical: 16.h),
@@ -318,7 +318,7 @@ class _ViewAllSpecializationScreenState extends State<ViewAllSpecializationScree
   Widget _buildSpecializationsGrid(List<SpecializationData> specializations) {
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<HomeCubit>().getAllSpecializations();
+        context.read<Home2Cubit>().getAllSpecializations();
       },
       color: Theme.of(context).primaryColor,
       backgroundColor: Colors.white,

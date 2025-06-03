@@ -63,6 +63,20 @@
     "loading": "Loading...",
     "no_image_available": "No Image",
     "students": "students",
+    "best_teachers": "Best teachers",
+
+
+    "selectDate": "Select Date",
+    "selectedDate": "Selected Date",
+    "selectTime": "Select Time",
+    "lessonType": "Lesson Type",
+    "lessonee": "Lesson",
+    "courseee": "Course",
+    "selectDateFirst": "Please select a date first",
+    "selectTimeFirst": "Please select a time first",
+    "pleaseSelectDate": "Please select a date",
+    "goToCalendar": "Go to Calendar",
+    "availableTime": "Available Time",
 
 
     "notification": "Notifications",

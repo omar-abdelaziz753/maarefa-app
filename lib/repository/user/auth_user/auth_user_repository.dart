@@ -55,13 +55,20 @@ class AuthUserRepository {
           .then((value) => value.fold(
                   (l) => showErrorAlert(
                         message: '$l',
-                      ), (r) {
+                      ), (r) async {
                 updateFCMToken();
                 prefService.setValue("token", r["data"]["token"]);
                 prefService.setValue("type", "user");
                 prefService.setBool("seen", true);
                 prefService.setBool("already_log", true);
                 prefService.setValue('profile', json.encode(r["data"]["user"]));
+                // Save user id here
+                prefService.setValue('user_id', r["data"]["user"]["id"].toString());
+                print('================');
+                // print(r["data"]["user"]["id"].toString());
+                print(await prefService.getValue('user_id'));
+                print('================');
+
                 showToast(tr('welcome'));
                 Get.offAll(
                   () => const MainScreen(),

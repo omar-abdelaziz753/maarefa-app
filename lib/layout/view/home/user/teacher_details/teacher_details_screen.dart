@@ -1,20 +1,14 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:my_academy/layout/view/home/user/data/models/get_all_teachers_data_model.dart';
 import 'package:my_academy/layout/view/home/user/data/models/get_teacher_details_data_model.dart';
-import 'package:my_academy/layout/view/home/user/view_all_specialization_screen.dart';
-
-import '../../../../model/common/search/search_db_response.dart';
-import 'data/cubit/home_cubit.dart';
-import 'data/cubit/home_state.dart';
+import 'package:my_academy/layout/view/home/user/teacher_details/profissional_booking_bottom_sheet.dart';
+import 'package:my_academy/service/local/share_prefs_service.dart';
+import '../data/cubit/home_cubit.dart';
+import '../data/cubit/home_state.dart';
 
 class TeacherDetailsScreen extends StatefulWidget {
   final String teacherId;
@@ -64,7 +58,7 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
   void _fetchTeacherDetails() {
     final teacherId = int.tryParse(widget.teacherId);
     if (teacherId != null) {
-      context.read<HomeCubit>().getTeacherDetails(providerId: teacherId);
+      context.read<Home2Cubit>().getTeacherDetails(providerId: teacherId);
     }
   }
 
@@ -91,14 +85,15 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[50],
-      body: BlocBuilder<HomeCubit, HomeState>(
+      body: BlocBuilder<Home2Cubit, Home2State>(
         builder: (context, state) {
           if (state is GetTeacherDetailsLoadingState) {
             return _buildLoadingScreen();
           } else if (state is GetTeacherDetailsErrorState) {
             return _buildErrorScreen(state.errorMessage);
           } else if (state is GetTeacherDetailsSuccessState) {
-            final teacher = context.read<HomeCubit>().teacherDetailsDataModel?.data;
+            final teacher =
+                context.read<Home2Cubit>().teacherDetailsDataModel?.data;
             if (teacher == null) {
               return _buildErrorScreen('teacher_data_not_available'.tr());
             }
@@ -200,7 +195,8 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
             SliverToBoxAdapter(child: _buildAboutSection(teacher)),
             SliverToBoxAdapter(child: _buildLessonsSection(teacher)),
             SliverToBoxAdapter(child: _buildEducationSection(teacher)),
-            SliverToBoxAdapter(child: SizedBox(height: 100.h)), // Space for booking button
+            SliverToBoxAdapter(child: SizedBox(height: 100.h)),
+            // Space for booking button
           ],
         ),
         _buildBookingButton(teacher),
@@ -209,7 +205,9 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
   }
 
   Widget _buildSliverAppBar(TeacherDetailsData teacher) {
-    final fullName = '${teacher.provider?.firstName ?? ''} ${teacher.provider?.lastName ?? ''}'.trim();
+    final fullName =
+        '${teacher.provider?.firstName ?? ''} ${teacher.provider?.lastName ?? ''}'
+            .trim();
 
     return SliverAppBar(
       expandedHeight: 300.h,
@@ -237,7 +235,8 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
             borderRadius: BorderRadius.circular(12.r),
           ),
           child: IconButton(
-            icon: Icon(Icons.description_outlined, color: Colors.white, size: 20.w),
+            icon: Icon(Icons.description_outlined,
+                color: Colors.white, size: 20.w),
             onPressed: () {
               HapticFeedback.lightImpact();
             },
@@ -280,15 +279,18 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
                         ],
                       ),
                       child: ClipOval(
-                        child: teacher.provider?.imagePath != null && teacher.provider!.imagePath!.isNotEmpty
+                        child: teacher.provider?.imagePath != null &&
+                                teacher.provider!.imagePath!.isNotEmpty
                             ? CachedNetworkImage(
-                          imageUrl: teacher.provider!.imagePath!,
-                          width: 120.w,
-                          height: 120.h,
-                          fit: BoxFit.cover,
-                          placeholder: (_, __) => _buildAvatarPlaceholder(),
-                          errorWidget: (_, __, ___) => _buildDefaultAvatar(),
-                        )
+                                imageUrl: teacher.provider!.imagePath!,
+                                width: 120.w,
+                                height: 120.h,
+                                fit: BoxFit.cover,
+                                placeholder: (_, __) =>
+                                    _buildAvatarPlaceholder(),
+                                errorWidget: (_, __, ___) =>
+                                    _buildDefaultAvatar(),
+                              )
                             : _buildDefaultAvatar(),
                       ),
                     ),
@@ -371,24 +373,31 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
             ],
           ),
           SizedBox(height: 16.h),
-
           if (teacher.provider?.specializations != null) ...[
-            _buildInfoRow(Icons.school_outlined, 'specialization'.tr(), teacher.provider!.specializations!.map((spec) => spec.name ?? '').where((name) => name.isNotEmpty).join(', ')),
+            _buildInfoRow(
+                Icons.school_outlined,
+                'specialization'.tr(),
+                teacher.provider!.specializations!
+                    .map((spec) => spec.name ?? '')
+                    .where((name) => name.isNotEmpty)
+                    .join(', ')),
             SizedBox(height: 12.h),
           ],
-
           if (teacher.provider?.degree != null) ...[
-            _buildInfoRow(Icons.workspace_premium_outlined, 'qualification'.tr(), teacher.provider?.degree ?? 'no_qualification'.tr()),
+            _buildInfoRow(
+                Icons.workspace_premium_outlined,
+                'qualification'.tr(),
+                teacher.provider?.degree ?? 'no_qualification'.tr()),
             SizedBox(height: 12.h),
           ],
-
           if (teacher.provider?.phone != null) ...[
-            _buildInfoRow(Icons.phone_outlined, 'phoneNumber'.tr(), teacher.provider?.phone ?? 'no_phone_number'.tr()),
+            _buildInfoRow(Icons.phone_outlined, 'phoneNumber'.tr(),
+                teacher.provider?.phone ?? 'no_phone_number'.tr()),
             SizedBox(height: 12.h),
           ],
-
           if (teacher.provider?.email != null) ...[
-            _buildInfoRow(Icons.email_outlined, 'emailAddress'.tr(), teacher.provider?.email ?? 'no_email'.tr()),
+            _buildInfoRow(Icons.email_outlined, 'emailAddress'.tr(),
+                teacher.provider?.email ?? 'no_email'.tr()),
           ],
         ],
       ),
@@ -434,17 +443,33 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
       margin: EdgeInsets.symmetric(horizontal: 16.w),
       child: Row(
         children: [
-          Expanded(child: _buildStatCard('ratee'.tr(), teacher.provider?.rate?.toStringAsFixed(1) ?? '0.0', Icons.star, Colors.amber)),
+          Expanded(
+              child: _buildStatCard(
+                  'ratee'.tr(),
+                  teacher.provider?.rate?.toStringAsFixed(1) ?? '0.0',
+                  Icons.star,
+                  Colors.amber)),
           SizedBox(width: 12.w),
-          Expanded(child: _buildStatCard('students'.tr(), '${teacher.provider?.rateCount ?? 0}', Icons.people, Colors.blue)),
+          Expanded(
+              child: _buildStatCard(
+                  'students'.tr(),
+                  '${teacher.provider?.rateCount ?? 0}',
+                  Icons.people,
+                  Colors.blue)),
           SizedBox(width: 12.w),
-          Expanded(child: _buildStatCard('coursess'.tr(), '${teacher.lessons?.length ?? 0}', Icons.play_lesson, Colors.green)),
+          Expanded(
+              child: _buildStatCard(
+                  'coursess'.tr(),
+                  '${teacher.lessons?.length ?? 0}',
+                  Icons.play_lesson,
+                  Colors.green)),
         ],
       ),
     );
   }
 
-  Widget _buildStatCard(String title, String value, IconData icon, Color color) {
+  Widget _buildStatCard(
+      String title, String value, IconData icon, Color color) {
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
@@ -564,7 +589,9 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
 
   Widget _buildLessonCard(Lesson lesson) {
     final nextTime = _formatLessonTime(lesson.nextTime);
-    final priceText = lesson.hourPrice != null ? '${lesson.hourPrice} ر.س/ساعة' : 'السعر غير محدد';
+    final priceText = lesson.hourPrice != null
+        ? '${lesson.hourPrice} ر.س/ساعة'
+        : 'السعر غير محدد';
 
     return Container(
       margin: EdgeInsets.only(bottom: 12.h),
@@ -592,7 +619,8 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
                           color: Colors.grey[800],
                         ),
                       ),
-                    if (lesson.content != null && lesson.content!.isNotEmpty) ...[
+                    if (lesson.content != null &&
+                        lesson.content!.isNotEmpty) ...[
                       SizedBox(height: 4.h),
                       Text(
                         lesson.content!,
@@ -610,16 +638,21 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
               Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                     decoration: BoxDecoration(
-                      color: lesson.isLive == true ? Colors.red[50] : Colors.green[50],
+                      color: lesson.isLive == true
+                          ? Colors.red[50]
+                          : Colors.green[50],
                       borderRadius: BorderRadius.circular(8.r),
                     ),
                     child: Text(
                       lesson.isLive == true ? 'livee'.tr() : 'registered'.tr(),
                       style: TextStyle(
                         fontSize: 10.sp,
-                        color: lesson.isLive == true ? Colors.red[600] : Colors.green[600],
+                        color: lesson.isLive == true
+                            ? Colors.red[600]
+                            : Colors.green[600],
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -646,9 +679,7 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
               ),
             ],
           ),
-
           SizedBox(height: 12.h),
-
           Row(
             children: [
               if (lesson.educationalStage?.name != null) ...[
@@ -685,7 +716,6 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
               ),
             ],
           ),
-
           if (lesson.subscriptions != null && lesson.subscriptions! > 0) ...[
             SizedBox(height: 8.h),
             Row(
@@ -706,7 +736,6 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
       ),
     );
   }
-
 
   Widget _buildLessonsSection(TeacherDetailsData teacher) {
     if (teacher.lessons == null || teacher.lessons!.isEmpty) {
@@ -816,7 +845,10 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
           SizedBox(height: 16.h),
 
           // Show first 3 lessons initially
-          ...teacher.lessons!.take(3).map((lesson) => _buildLessonCard(lesson)).toList(),
+          ...teacher.lessons!
+              .take(3)
+              .map((lesson) => _buildLessonCard(lesson))
+              .toList(),
 
           // Show all lessons button if there are more than 3
           if (teacher.lessons!.length > 3) ...[
@@ -826,14 +858,16 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
                 onPressed: () => _showAllLessons(teacher.lessons!),
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.blue[600],
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       '${'view_all_lessons'.tr()} (${teacher.lessons!.length})',
-                      style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontSize: 14.sp, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(width: 4.w),
                     Icon(Icons.arrow_forward_ios, size: 14.w),
@@ -891,7 +925,8 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
                 ),
                 const Spacer(),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                   decoration: BoxDecoration(
                     color: Colors.blue[50],
                     borderRadius: BorderRadius.circular(12.r),
@@ -955,12 +990,15 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
             ],
           ),
           SizedBox(height: 16.h),
-
           if (teacher.provider?.degree != null)
             _buildEducationItem(
               teacher.provider?.degree ?? '',
               // teacher.provider?.specializations! .join(', ') ?? '',
-              teacher.provider?.specializations?.map((spec) => spec.name ?? '').where((name) => name.isNotEmpty).join(', ') ?? '',
+              teacher.provider?.specializations
+                      ?.map((spec) => spec.name ?? '')
+                      .where((name) => name.isNotEmpty)
+                      .join(', ') ??
+                  '',
               // !.map((spec) => spec.name ?? '').where((name) => name.isNotEmpty).join(', '))
               '',
             ),
@@ -1113,147 +1151,247 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen>
   void _onBookNowPressed(TeacherDetailsData teacher) {
     HapticFeedback.mediumImpact();
 
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => _buildBookingBottomSheet(teacher),
+    ProfessionalBookingBottomSheet.show(
+      context,
+      teacher,
+      (String date, String timeFrom, String timeTo, String type) {
+        // Handle booking confirmation with consumer
+        _handleBookingWithConsumer(
+          teacher: teacher,
+          date: date,
+          timeFrom: timeFrom,
+          timeTo: timeTo,
+          type: type,
+        );
+      },
     );
   }
 
-  Widget _buildBookingBottomSheet(TeacherDetailsData teacher) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24.r),
-          topRight: Radius.circular(24.r),
-        ),
-      ),
-      child: Column(
-        children: [
-          Container(
-            width: 40.w,
-            height: 4.h,
-            margin: EdgeInsets.only(top: 12.h),
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(2.r),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(24.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${'book'.tr()} ${teacher.provider?.firstName ?? "المدرس"}',
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey[800],
-                  ),
-                ),
-                SizedBox(height: 16.h),
-                Text(
-                  'chooseDateAndTime'.tr(),
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    color: Colors.grey[600],
-                  ),
-                ),
-                SizedBox(height: 24.h),
+  Future<void> _handleBookingWithConsumer({
+    required TeacherDetailsData teacher,
+    required String date,
+    required String timeFrom,
+    required String timeTo,
+    required String type,
+  }) async {
+    SharedPrefService prefService = SharedPrefService();
 
-                Container(
-                  padding: EdgeInsets.all(16.w),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[50],
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'bookingsCalendar'.tr(),
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                        fontSize: 14.sp,
-                      ),
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 24.h),
-
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      _showBookingConfirmation(teacher);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue[600],
-                      foregroundColor: Colors.white,
-                      padding: EdgeInsets.symmetric(vertical: 16.h),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                    ),
-                    child: Text(
-                      'confirmBooking'.tr(),
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showBookingConfirmation(TeacherDetailsData teacher) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.r),
-        ),
-        title: Row(
-          children: [
-            Icon(Icons.check_circle, color: Colors.green[600], size: 28.w),
-            SizedBox(width: 12.w),
-            Text('bookingSuccess'.tr(), style: TextStyle(color: Colors.green[600])),
-          ],
-        ),
-        content: Text('${'bookLesson'.tr()} ${teacher.provider?.firstName ?? "المدرس"} بنجاح. سيتم التواصل معك قريباً.'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('ok'.tr(), style: TextStyle(color: Colors.green[600])),
-          ),
-        ],
+      barrierDismissible: false,
+      builder: (dialogContext) => BlocConsumer<Home2Cubit, Home2State>(
+        listener: (context, state) {
+          if (state is MakeBookSuccessState) {
+            // Close the loading dialog
+            Navigator.of(dialogContext).pop();
+
+            // Show success message
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Booking confirmed successfully!'),
+                backgroundColor: Colors.green,
+                duration: Duration(seconds: 2),
+              ),
+            );
+
+            // Navigate to home after a short delay
+            Future.delayed(Duration(milliseconds: 500), () {
+              // Navigator.of(context).pushNamedAndRemoveUntil(
+              //   '/home', // Replace with your home route
+              //       (route) => false,
+              // );
+              // Navigator.pushAndRemoveUntil(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => HomeScreen()),
+              //     (route) => false);
+              // Or if you're using navigation without named routes:
+              // Navigator.of(context).pushAndRemoveUntil(
+              //   MaterialPageRoute(builder: (context) => HomeScreen()),
+              //   (route) => false,
+              // );
+            });
+          }
+          else if (state is MakeBookErrorState) {
+            // Close the loading dialog
+            Navigator.of(dialogContext).pop();
+
+            // Show error message
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                    state.errorMessage ?? 'Booking failed. Please try again.'),
+                backgroundColor: Colors.red,
+                duration: Duration(seconds: 3),
+              ),
+            );
+          }
+        },
+        builder: (context, state) {
+          return AlertDialog(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(height: 16),
+                Text('Processing your booking...'),
+              ],
+            ),
+          );
+        },
       ),
     );
+
+    // Make the booking call
+    final cubit = context.read<Home2Cubit>();
+    cubit.makeBook(
+      clientId: await prefService.getValue('user_id'),
+      date: date,
+      timeFrom: timeFrom,
+      timeTo: timeTo,
+      type: type,
+      teacherId: teacher.provider!.id.toString(),
+      context: context,
+    );
+
+    print("date is ======== $date");
+    print("timeFrom $timeFrom");
+    print("timeTo $timeTo");
+    print("type $type");
+    print("teacherId ${teacher.provider!.id.toString()}");
   }
 }
 
 
-
-
-
-
-
-
-
-
-
-
+// Widget _buildBookingBottomSheet(TeacherDetailsData teacher) {
+//   return Container(
+//     height: MediaQuery.of(context).size.height * 0.7,
+//     decoration: BoxDecoration(
+//       color: Colors.white,
+//       borderRadius: BorderRadius.only(
+//         topLeft: Radius.circular(24.r),
+//         topRight: Radius.circular(24.r),
+//       ),
+//     ),
+//     child: Column(
+//       children: [
+//         Container(
+//           width: 40.w,
+//           height: 4.h,
+//           margin: EdgeInsets.only(top: 12.h),
+//           decoration: BoxDecoration(
+//             color: Colors.grey[300],
+//             borderRadius: BorderRadius.circular(2.r),
+//           ),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.all(24.w),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Text(
+//                 '${'book'.tr()} ${teacher.provider?.firstName ?? "المدرس"}',
+//                 style: TextStyle(
+//                   fontSize: 20.sp,
+//                   fontWeight: FontWeight.bold,
+//                   color: Colors.grey[800],
+//                 ),
+//               ),
+//               SizedBox(height: 16.h),
+//               Text(
+//                 'chooseDateAndTime'.tr(),
+//                 style: TextStyle(
+//                   fontSize: 16.sp,
+//                   color: Colors.grey[600],
+//                 ),
+//               ),
+//               SizedBox(height: 24.h),
+//               Container(
+//                 padding: EdgeInsets.all(16.w),
+//                 decoration: BoxDecoration(
+//                   color: Colors.grey[50],
+//                   borderRadius: BorderRadius.circular(12.r),
+//                 ),
+//                 child: Center(
+//                   child: Text(
+//                     'bookingsCalendar'.tr(),
+//                     style: TextStyle(
+//                       color: Colors.grey[600],
+//                       fontSize: 14.sp,
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//               SizedBox(height: 24.h),
+//               SizedBox(
+//                 width: double.infinity,
+//                 child: ElevatedButton(
+//                   onPressed: () {
+//                     Navigator.pop(context);
+//                     BookingConfirmationDialog(
+//                         teacherName: teacher.provider?.firstName ?? "المدرس",
+//                         onConfirm: () {
+//                           Navigator.pop(context);
+//                         });
+//                     // _showBookingConfirmation(teacher);
+//                   },
+//                   style: ElevatedButton.styleFrom(
+//                     backgroundColor: Colors.blue[600],
+//                     foregroundColor: Colors.white,
+//                     padding: EdgeInsets.symmetric(vertical: 16.h),
+//                     shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.circular(12.r),
+//                     ),
+//                   ),
+//                   child: Text(
+//                     'confirmBooking'.tr(),
+//                     style: TextStyle(
+//                       fontSize: 16.sp,
+//                       fontWeight: FontWeight.w600,
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ],
+//     ),
+//   );
+// }
+//
+// void _showBookingConfirmation(TeacherDetailsData teacher) {
+//   showDialog(
+//     context: context,
+//     builder: (context) => AlertDialog(
+//       backgroundColor: Colors.white,
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.circular(16.r),
+//       ),
+//       title: Row(
+//         children: [
+//           Icon(Icons.check_circle, color: Colors.green[600], size: 28.w),
+//           SizedBox(width: 12.w),
+//           Text('bookingSuccess'.tr(),
+//               style: TextStyle(color: Colors.green[600])),
+//         ],
+//       ),
+//       content: Text(
+//           '${'bookLesson'.tr()} ${teacher.provider?.firstName ?? "المدرس"} بنجاح. سيتم التواصل معك قريباً.'),
+//       actions: [
+//         TextButton(
+//           onPressed: () => Navigator.pop(context),
+//           child: Text('ok'.tr(), style: TextStyle(color: Colors.green[600])),
+//         ),
+//       ],
+//     ),
+//   );
+// }
+// Event class for calendar
+// class Event {
+//   final String title;
+//
+//   Event(this.title);
+// }
 
 // class TeacherDetailsScreen extends StatefulWidget {
 //   final String teacherId;

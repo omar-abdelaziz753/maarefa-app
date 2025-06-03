@@ -183,7 +183,7 @@ class MyApp extends StatelessWidget {
                   NationsCubit(NationalitiesRepository())),
           BlocProvider(
               create: (BuildContext context) =>
-                  HomeCubit()..getAllSpecializations()),
+                  Home2Cubit()..getAllSpecializations()),
         ],
         child: OverlaySupport(
           child: GetMaterialApp(

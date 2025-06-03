@@ -62,12 +62,28 @@
     "loading": "جاري التحميل...",
     "no_image_available": "لا توجد صورة",
     "students": "طلاب",
+    "best_teachers": "افضل المعلمين",
 
     "available_teacher": "معلم متاح",
     "something_went_wrong_in_data": "حدث خطأ في تحميل البيانات",
     "no_teacher_in_specialization": "لا يوجد معلمين متاحين في هذا التخصص حالياً",
     "load_more": "تحميل المزيد...",
     "reviews": "تقييم",
+
+
+    "selectDate": "اختر التاريخ",
+    "selectedDate": "التاريخ المحدد",
+    "selectTime": "اختر الوقت",
+    "lessonType": "نوع الدرس",
+    "lessonee": "درس",
+    "courseee": "دورة",
+    "selectDateFirst": "يرجى اختيار التاريخ أولاً",
+    "selectTimeFirst": "يرجى اختيار الوقت أولاً",
+    "pleaseSelectDate": "يرجى اختيار التاريخ",
+    "goToCalendar": "اذهب إلى التقويم",
+    "availableTime": "الوقت المتاح",
+
+
 
     "notification": "الاشعارات",
     "new_lesson_request": "طلب درس جديد",

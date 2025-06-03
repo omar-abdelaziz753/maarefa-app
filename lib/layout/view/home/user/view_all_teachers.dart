@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:my_academy/layout/view/home/user/data/models/get_all_teachers_data_model.dart';
-import 'package:my_academy/layout/view/home/user/teacher_details_screen.dart';
+import 'package:my_academy/layout/view/home/user/teacher_details/teacher_details_screen.dart';
 import 'package:my_academy/layout/view/home/user/view_all_specialization_screen.dart';
 
 import '../../../../model/common/search/search_db_response.dart';
@@ -33,7 +33,7 @@ class ViewAllTeachers extends StatefulWidget {
 class _ViewAllTeachersState extends State<ViewAllTeachers>
     with TickerProviderStateMixin {
   late ScrollController _scrollController;
-  late HomeCubit _homeCubit;
+  late Home2Cubit _homeCubit;
   late AnimationController _fabAnimationController;
   bool _showScrollToTop = false;
 
@@ -43,7 +43,7 @@ class _ViewAllTeachersState extends State<ViewAllTeachers>
     log('widget.selectedSpecializationId ${widget.selectedSpecializationId}');
 
     _scrollController = ScrollController();
-    _homeCubit = context.read<HomeCubit>();
+    _homeCubit = context.read<Home2Cubit>();
     _fabAnimationController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
@@ -92,7 +92,7 @@ class _ViewAllTeachersState extends State<ViewAllTeachers>
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: _buildAppBar(),
-      body: BlocBuilder<HomeCubit, HomeState>(
+      body: BlocBuilder<Home2Cubit, Home2State>(
         builder: (context, state) {
           return Stack(
             children: [
@@ -140,7 +140,7 @@ class _ViewAllTeachersState extends State<ViewAllTeachers>
               fontWeight: FontWeight.w600,
             ),
           ),
-          BlocBuilder<HomeCubit, HomeState>(
+          BlocBuilder<Home2Cubit, Home2State>(
             builder: (context, state) {
               final teacherCount = _homeCubit.allTeachers.length;
               return Text(
@@ -166,7 +166,7 @@ class _ViewAllTeachersState extends State<ViewAllTeachers>
     );
   }
 
-  Widget _buildBody(HomeState state) {
+  Widget _buildBody(Home2State state) {
     if (state is GetAllTeachersLoadingState) {
       return _buildLoadingState();
     }
@@ -343,7 +343,7 @@ class _ViewAllTeachersState extends State<ViewAllTeachers>
   }
 
   Widget _buildLoadMoreIndicator() {
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocBuilder<Home2Cubit, Home2State>(
       builder: (context, state) {
         if (state is GetAllTeachersLoadingMoreState) {
           return Container(

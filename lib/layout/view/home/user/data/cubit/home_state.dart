@@ -18,40 +18,62 @@
 //   GetAllTeachersErrorState({this.errorMessage});
 // }
 
-abstract class HomeState {}
+abstract class Home2State {}
 
-class HomeInitial extends HomeState {}
+class HomeInitial extends Home2State {}
 
-class GetAllTeachersLoadingState extends HomeState {}
+class GetAllTeachersLoadingState extends Home2State {}
 
-class GetAllTeachersSuccessState extends HomeState {}
+class GetAllTeachersSuccessState extends Home2State {}
 
-class GetAllTeachersErrorState extends HomeState {
+class GetAllTeachersErrorState extends Home2State {
   final String errorMessage;
 
   GetAllTeachersErrorState({required this.errorMessage});
 }
 
-class GetAllTeachersLoadingMoreState extends HomeState {}
+class GetAllTeachersLoadingMoreState extends Home2State {}
 
 /// Get All Specializations States
-class GetAllSpecializationsLoadingState extends HomeState {}
+class GetAllSpecializationsLoadingState extends Home2State {}
 
-class GetAllSpecializationsSuccessState extends HomeState {}
+class GetAllSpecializationsSuccessState extends Home2State {}
 
-class GetAllSpecializationsErrorState extends HomeState {
+class GetAllSpecializationsErrorState extends Home2State {
   final String errorMessage;
 
   GetAllSpecializationsErrorState({required this.errorMessage});
 }
 
 /// Get Teacher Details States
-class GetTeacherDetailsLoadingState extends HomeState {}
+class GetTeacherDetailsLoadingState extends Home2State {}
 
-class GetTeacherDetailsSuccessState extends HomeState {}
+class GetTeacherDetailsSuccessState extends Home2State {}
 
-class GetTeacherDetailsErrorState extends HomeState {
+class GetTeacherDetailsErrorState extends Home2State {
   final String errorMessage;  // Add this line
 
   GetTeacherDetailsErrorState({required this.errorMessage});
+}
+
+/// Make Book States
+class MakeBookLoadingState extends Home2State {}
+
+class MakeBookSuccessState extends Home2State {}
+
+class MakeBookErrorState extends Home2State {
+  final String errorMessage;
+
+  MakeBookErrorState({required this.errorMessage});
+}
+
+/// Get All Best Teachers States
+class GetAllBestTeachersLoadingState extends Home2State {}
+
+class GetAllBestTeachersSuccessState extends Home2State {}
+
+class GetAllBestTeachersErrorState extends Home2State {
+  final String errorMessage;
+
+  GetAllBestTeachersErrorState({required this.errorMessage});
 }
