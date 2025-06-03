@@ -59,7 +59,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   if (Platform.isAndroid) {
     /// from my lap
-    /// 22
+    /// 88888
     await Firebase.initializeApp(
         options: const FirebaseOptions(
       apiKey: 'AIzaSyDnVS6oM1iWBM2Avwa75Z-oDb8AXmITSFg',
