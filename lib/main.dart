@@ -15,11 +15,13 @@ import 'package:my_academy/bloc/auth/provider/auth_provider_cubit.dart';
 // import 'package:my_academy/bloc/auth/show_delete_and_payment./injection.dart'
 //     as di;
 import 'package:my_academy/bloc/auth/show_delete_and_payment/injection.dart';
-import 'package:my_academy/bloc/auth/show_delete_and_payment/injection.dart' as di;
+import 'package:my_academy/bloc/auth/show_delete_and_payment/injection.dart'
+    as di;
 import 'package:my_academy/bloc/bookmark/bookmark_cubit.dart';
 import 'package:my_academy/bloc/lessons/lessons_cubit.dart';
 import 'package:my_academy/bloc/pay/pay_cubit.dart';
 import 'package:my_academy/bloc/search_bloc/search_bloc.dart';
+import 'package:my_academy/constants.dart';
 import 'package:my_academy/layout/activity/splash/splash_screen.dart';
 import 'package:my_academy/repository/common/cities/cities_repository.dart';
 import 'package:my_academy/repository/common/nationalities/nationalities_repository.dart';
@@ -29,6 +31,7 @@ import 'package:my_academy/repository/user/courses/courses_repository.dart';
 import 'package:my_academy/repository/user/edit_profile/user_repository.dart';
 import 'package:my_academy/repository/user/subscriptions/subscriptions_repository.dart';
 import 'package:my_academy/res/value/color/color.dart';
+import 'package:my_academy/service/local/share_prefs_service.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 // import 'bloc/auth/show_delete_and_payment./show_delete_and_paymnet_cubit.dart';
@@ -96,6 +99,15 @@ void main() async {
     SystemUiOverlayStyle.dark,
   );
   SystemChannels.textInput.invokeMethod('TextInput.hide');
+  SharedPrefService prefService = SharedPrefService();
+
+  final result = await prefService.getBool("has_bank_account");
+
+  result.fold((failure) => print("Error: $failure"), (value) {
+    print("has_bank_account: $value");
+    hasBankAccount = value;
+    print("hasBankAccount: $hasBankAccount");
+  });
 
   runApp(
     Phoenix(

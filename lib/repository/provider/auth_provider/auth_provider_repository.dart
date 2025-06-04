@@ -42,7 +42,6 @@ class AuthProviderRepository {
                 prefService.setValue("user_name", r);
                 updateFCMToken();
                 showToast(tr('welcome'));
-
                 Get.offAll(() => const ProviderMainScreen());
               }));
     } catch (e) {

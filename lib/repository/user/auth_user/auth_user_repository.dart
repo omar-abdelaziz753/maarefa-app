@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:my_academy/constants.dart';
 
 import '../../../failure.dart';
 import '../../../layout/activity/auth/forget/check_password_screen.dart';
@@ -29,19 +30,45 @@ class AuthUserRepository {
     try {
       return DioService()
           .post('/provider/auth/login', body: data)
-          .then((value) => value.fold(
-                  (l) => showErrorAlert(
-                        message: '$l',
-                      ), (r) {
+          // .then((value) => value.fold(
+          //         (l) => showErrorAlert(
+          //               message: '$l',
+          //             ), (r) {
+          //       prefService.setValue("token", r["data"]["token"]);
+          //       prefService.setBool("seen", true);
+          //       prefService.setValue("type", "provider");
+          //       prefService.setValue('profile', json.encode(r["data"]["user"]));
+          //       showToast(tr('welcome'));
+          //       updateFCMToken();
+          //       // prefService.setValue('profile', json.encode(r));
+          //       prefService.setBool(
+          //           "has_bank_account", r["data"]["has_bank_account"] ?? false);
+          //       print(
+          //           "has_bank_account: ${prefService.getBool("has_bank_account")}");
+          //       Get.offAll(() => const ProviderMainScreen());
+          //       // Get.to(() => const ProviderMainScreen());
+          //     }));
+          .then((value) =>
+              value.fold((l) => showErrorAlert(message: '$l'), (r) async {
                 prefService.setValue("token", r["data"]["token"]);
                 prefService.setBool("seen", true);
                 prefService.setValue("type", "provider");
                 prefService.setValue('profile', json.encode(r["data"]["user"]));
                 showToast(tr('welcome'));
                 updateFCMToken();
-                // prefService.setValue('profile', json.encode(r));
+
+                prefService.setBool(
+                    "has_bank_account", r["data"]["has_bank_account"] ?? false);
+
+                final result = await prefService.getBool("has_bank_account");
+
+                result.fold((failure) => print("Error: $failure"), (value) {
+                  print("has_bank_account: $value");
+                  hasBankAccount = value;
+                  print("hasBankAccount: $hasBankAccount");
+                });
+
                 Get.offAll(() => const ProviderMainScreen());
-                // Get.to(() => const ProviderMainScreen());
               }));
     } catch (e) {
       return left(Failure(e.toString()));
@@ -134,8 +161,7 @@ class AuthUserRepository {
           .then((value) => value.fold(
                   (l) => showErrorAlert(
                         message: '$l',
-                      ),
-                       (r) {
+                      ), (r) {
                 showToast(r["messages"]);
                 Get.to(() => CodeScreen(
                       email: email,

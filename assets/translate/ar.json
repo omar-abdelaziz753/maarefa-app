@@ -377,6 +377,9 @@
     "tax": "قيمة الضريبة" ,
     "course_price_between": "سعر الدورة بين",
     "price_range_error": "السعر يجب أن يكون بين {0} و {1} ر.س" , 
-    "hourly_price_between": "السعر بالساعة بين"
+    "hourly_price_between": "السعر بالساعة بين",
+    "about_trainer": "عن المدرب",
+    "available_times": "الأوقات المتاحة"
+  
     
 }

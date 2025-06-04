@@ -377,5 +377,7 @@
     "savedToClipboard": "Saved to clipboard", 
     "course_price_between": "Course price between",
     "price_range_error": "Price must be between {0} and {1} SAR", 
-    "hourly_price_between": "Hourly price between"
+    "hourly_price_between": "Hourly price between", 
+      "about_trainer": "About the Trainer",
+  "available_times": "Available Times"
 }
