@@ -667,10 +667,10 @@ class BestTeachersCard extends StatelessWidget {
   double _getCardWidth(double screenWidth) {
     if (screenWidth < 600) {
       // Mobile: Card takes most of screen width minus margins
-      return screenWidth * 0.8;
+      return screenWidth * 0.5;
     } else if (screenWidth < 1200) {
       // Tablet: Smaller cards to show more
-      return screenWidth * 0.45;
+      return screenWidth * 0.35;
     } else {
       // Desktop: Fixed max width
       return 320;
@@ -680,13 +680,19 @@ class BestTeachersCard extends StatelessWidget {
   double _getCardHeight(double screenWidth) {
     if (screenWidth < 600) {
       // Mobile: Taller cards
-      return 380;
+      // return 380.h;
+      return 230.h;
+      // return 260.h;
     } else if (screenWidth < 1200) {
       // Tablet: Medium height
-      return 350;
+      return 200.h;
+      // return 230.h;
+      // return 350.h;
     } else {
       // Desktop: Compact height
-      return 320;
+      return 170.h;
+      // return 200.h;
+      // return 320;
     }
   }
 
@@ -772,7 +778,7 @@ class BestTeachersCard extends StatelessWidget {
               teacher.imagePath!,
               width: double.infinity,
               height: double.infinity,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
               errorBuilder: (context, error, stackTrace) {
                 return _buildAvatarFallback(teacher, cardWidth);
               },
@@ -913,42 +919,42 @@ class BestTeachersCard extends StatelessWidget {
                 ),
               ),
 
-            const Spacer(),
-
-            // Rating Section
-            if (teacher.rate != null && teacher.rateCount != null)
-              Container(
-                padding: EdgeInsets.symmetric(vertical: cardWidth * 0.02),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber[600],
-                      size: ratingFontSize,
-                    ),
-                    SizedBox(width: cardWidth * 0.01),
-                    Text(
-                      '${teacher.rate}',
-                      style: TextStyle(
-                        fontSize: ratingFontSize,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    SizedBox(width: cardWidth * 0.01),
-                    Expanded(
-                      child: Text(
-                        '(${teacher.rateCount} reviews)',
-                        style: TextStyle(
-                          fontSize: titleFontSize,
-                          color: Colors.grey[600],
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            // const Spacer(),
+            //
+            // // Rating Section
+            // if (teacher.rate != null && teacher.rateCount != null)
+            //   Container(
+            //     padding: EdgeInsets.symmetric(vertical: cardWidth * 0.02),
+            //     child: Row(
+            //       children: [
+            //         Icon(
+            //           Icons.star,
+            //           color: Colors.amber[600],
+            //           size: ratingFontSize,
+            //         ),
+            //         SizedBox(width: cardWidth * 0.01),
+            //         Text(
+            //           '${teacher.rate}',
+            //           style: TextStyle(
+            //             fontSize: ratingFontSize,
+            //             fontWeight: FontWeight.bold,
+            //             color: Colors.black87,
+            //           ),
+            //         ),
+            //         SizedBox(width: cardWidth * 0.01),
+            //         Expanded(
+            //           child: Text(
+            //             '(${teacher.rateCount} reviews)',
+            //             style: TextStyle(
+            //               fontSize: titleFontSize,
+            //               color: Colors.grey[600],
+            //             ),
+            //             overflow: TextOverflow.ellipsis,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
           ],
         ),
       ),
