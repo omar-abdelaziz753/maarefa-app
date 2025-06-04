@@ -586,16 +586,16 @@ class ProviderMin {
 
 class Lesson {
   int? id;
-  EducationalStage? educationalStage; // Reusing EducationalStage model
-  EducationalYear? educationalYear;   // Reusing EducationalYear model
+  EducationalStage? educationalStage;
+  EducationalYear? educationalYear;
   Subject? subject;
   String? content;
   String? hourPrice;
   double? priceWithTax;
   double? tax;
   bool? isLive;
-  dynamic hostUrl; // Can be null
-  dynamic joinUrl; // Can be null
+  dynamic hostUrl;
+  dynamic joinUrl;
   List<LessonTime>? times;
   int? subscriptions;
   ProviderMin? provider; // Reusing ProviderMin

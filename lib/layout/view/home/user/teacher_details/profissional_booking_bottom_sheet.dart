@@ -62,6 +62,7 @@ class _ProfessionalBookingBottomSheetState
     DateTime.now().add(Duration(days: 7)),
   ];
 
+
   @override
   void initState() {
     super.initState();
@@ -110,7 +111,8 @@ class _ProfessionalBookingBottomSheetState
               controller: _tabController,
               children: [
                 _buildDateSelectionTab(),
-                _buildTimeSelectionTab(),
+                _buildWriteStartAndEndTimeCanGeneratedByStartTimeMakeAfterOneHour()
+                // _buildTimeSelectionTab(),
               ],
             ),
           ),
@@ -120,6 +122,252 @@ class _ProfessionalBookingBottomSheetState
         ],
       ),
     );
+  }
+
+  Widget _buildWriteStartAndEndTimeCanGeneratedByStartTimeMakeAfterOneHour() {
+    if (_selectedDay == null) {
+      return _buildSelectDateFirst();
+    }
+
+    return SingleChildScrollView(
+      padding: EdgeInsets.all(24.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Selected Date Summary
+          _buildDateSummary(),
+
+          SizedBox(height: 24.h),
+
+          // Start Time Input Section
+          _buildStartTimeInput(),
+
+          SizedBox(height: 16.h),
+
+          // Generated End Time Display
+          if (_selectedStartTime != null) _buildGeneratedEndTime(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStartTimeInput() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'selectStartTime'.tr(),
+          style: TextStyle(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600,
+            color: Colors.grey[800],
+          ),
+        ),
+        SizedBox(height: 12.h),
+        GestureDetector(
+          onTap: () => _selectStartTime(),
+          child: Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(
+                color: _selectedStartTime != null ? Colors.blue[600]! : Colors.grey[300]!,
+                width: 1.5,
+              ),
+              borderRadius: BorderRadius.circular(8.r),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.1),
+                  blurRadius: 4,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.access_time,
+                  color: _selectedStartTime != null ? Colors.blue[600] : Colors.grey[500],
+                  size: 20.sp,
+                ),
+                SizedBox(width: 12.w),
+                Expanded(
+                  child: Text(
+                    _selectedStartTime != null
+                        ? _formatTime(_selectedStartTime!)
+                        : 'tapToSelectStartTime'.tr(),
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                      color: _selectedStartTime != null
+                          ? Colors.grey[800]
+                          : Colors.grey[500],
+                    ),
+                  ),
+                ),
+                Icon(
+                  Icons.keyboard_arrow_down,
+                  color: Colors.grey[400],
+                  size: 20.sp,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildGeneratedEndTime() {
+    final endTime = _generateEndTime(_selectedStartTime!);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'generatedEndTime'.tr(),
+          style: TextStyle(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600,
+            color: Colors.grey[800],
+          ),
+        ),
+        SizedBox(height: 12.h),
+        Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          decoration: BoxDecoration(
+            color: Colors.grey[50],
+            border: Border.all(
+              color: Colors.grey[300]!,
+              width: 1.5,
+            ),
+            borderRadius: BorderRadius.circular(8.r),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.schedule,
+                color: Colors.grey[600],
+                size: 20.sp,
+              ),
+              SizedBox(width: 12.w),
+              Text(
+                _formatTime(endTime),
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey[700],
+                ),
+              ),
+              SizedBox(width: 8.w),
+              Text(
+                '(+1 hour)',
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey[500],
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 16.h),
+        // Time slot summary
+        _buildTimeSlotSummary(),
+      ],
+    );
+  }
+
+  Widget _buildTimeSlotSummary() {
+    final startTime = _selectedStartTime!;
+    final endTime = _generateEndTime(startTime);
+    final timeSlot = '${_formatTime(startTime)} - ${_formatTime(endTime)}';
+
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(16.w),
+      decoration: BoxDecoration(
+        color: Colors.blue[50],
+        border: Border.all(
+          color: Colors.blue[200]!,
+          width: 1,
+        ),
+        borderRadius: BorderRadius.circular(8.r),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'selectedTimeSlot'.tr(),
+            style: TextStyle(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w500,
+              color: Colors.blue[700],
+            ),
+          ),
+          SizedBox(height: 4.h),
+          Text(
+            timeSlot,
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600,
+              color: Colors.blue[800],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+// Helper methods to add to your class
+  TimeOfDay? _selectedStartTime;
+
+  Future<void> _selectStartTime() async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: _selectedStartTime ?? TimeOfDay.now(),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: Colors.blue[600]!,
+              onPrimary: Colors.white,
+              surface: Colors.white,
+              onSurface: Colors.grey[800]!,
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null && picked != _selectedStartTime) {
+      setState(() {
+        _selectedStartTime = picked;
+        // Update the time slot string for compatibility
+        final endTime = _generateEndTime(picked);
+        _selectedTimeSlot = '${_formatTime(picked)} - ${_formatTime(endTime)}';
+        _parseSelectedTimeSlot(); // If you have this method
+      });
+    }
+  }
+
+  TimeOfDay _generateEndTime(TimeOfDay startTime) {
+    final startMinutes = startTime.hour * 60 + startTime.minute;
+    final endMinutes = startMinutes + 60; // Add 1 hour
+
+    final endHour = (endMinutes ~/ 60) % 24; // Handle overflow to next day
+    final endMinute = endMinutes % 60;
+
+    return TimeOfDay(hour: endHour, minute: endMinute);
+  }
+
+  String _formatTime(TimeOfDay time) {
+    final hour = time.hour.toString().padLeft(2, '0');
+    final minute = time.minute.toString().padLeft(2, '0');
+    return '$hour:$minute';
   }
 
   Widget _buildHeader() {

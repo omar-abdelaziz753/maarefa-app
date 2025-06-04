@@ -78,7 +78,6 @@
     "goToCalendar": "Go to Calendar",
     "availableTime": "Available Time",
 
-
     "notification": "Notifications",
     "new_lesson_request": "New Lesson Request",
     "new_course_request": "New Course Request",
@@ -107,6 +106,7 @@
     "no_teacher_in_specialization": "No teachers available in this specialization currently",
     "load_more": "Load more...",
     "reviews": "Reviews",
+    "bookANewDate": "Book a new date",
 
 
     "view_details": "View Details",
