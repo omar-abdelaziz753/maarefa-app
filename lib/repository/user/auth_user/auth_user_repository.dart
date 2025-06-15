@@ -56,9 +56,10 @@ class AuthUserRepository {
                 prefService.setValue('profile', json.encode(r["data"]["user"]));
                 showToast(tr('welcome'));
                 updateFCMToken();
-
-                prefService.setBool(
-                    "has_bank_account", r["data"]["has_bank_account"] ?? false);
+                print(
+                    " print checke ${r["data"]["user"]["bank_account"] == null}");
+                prefService.setBool("has_bank_account",
+                    r["data"]["user"]["bank_account"] != null ? true : false);
 
                 final result = await prefService.getBool("has_bank_account");
 
@@ -90,7 +91,8 @@ class AuthUserRepository {
                 prefService.setBool("already_log", true);
                 prefService.setValue('profile', json.encode(r["data"]["user"]));
                 // Save user id here
-                prefService.setValue('user_id', r["data"]["user"]["id"].toString());
+                prefService.setValue(
+                    'user_id', r["data"]["user"]["id"].toString());
                 print('================');
                 // print(r["data"]["user"]["id"].toString());
                 print(await prefService.getValue('user_id'));
