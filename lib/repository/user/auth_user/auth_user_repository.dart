@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
@@ -252,6 +253,8 @@ class AuthUserRepository {
 
   updateFCMToken() async {
     final fcmToken = await NotificationService.instance!.getToken();
+    log("fcmmmmm    $fcmToken");
+
     try {
       return DioService().post('/client/auth/updateFcmToken', body: {
         "fcm_token": fcmToken,
