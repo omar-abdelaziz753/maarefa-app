@@ -60,26 +60,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Bloc.observer = MyBlocObserver();
-  if (Platform.isAndroid) {
-    await Firebase.initializeApp(
-        options: const FirebaseOptions(
-      apiKey: 'AIzaSyDnVS6oM1iWBM2Avwa75Z-oDb8AXmITSFg',
-      appId: '1:771933054342:android:506178b36bb0a18ec03807',
-      messagingSenderId: '771933054342',
-      projectId: 'ma3rafa-13104',
-      storageBucket: 'ma3rafa-13104.appspot.com',
-    ));
-  } else {
-    await Firebase.initializeApp(
-        options: const FirebaseOptions(
-      apiKey: 'AIzaSyDnVS6oM1iWBM2Avwa75Z-oDb8AXmITSFg',
-      appId: '1:771933054342:android:506178b36bb0a18ec03807',
-      messagingSenderId: '771933054342',
-      projectId: 'ma3rafa-13104',
-      storageBucket: 'ma3rafa-13104.appspot.com',
-    ));
-  }
-
+  await Firebase.initializeApp();
   await NotificationService.instance!.initNotificationService();
   await EasyLocalization.ensureInitialized();
   await di.initSL();
